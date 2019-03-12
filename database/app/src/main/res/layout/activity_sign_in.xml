@@ -15,7 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:src="@drawable/firebase_lockup_400" />
+        android:minWidth="150dp"
+        android:minHeight="150dp"
+        android:src="@drawable/washing_machine" />
 
     <LinearLayout
         android:id="@+id/layoutEmailPassword"
