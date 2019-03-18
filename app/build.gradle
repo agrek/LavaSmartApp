@@ -32,6 +32,7 @@ configurations.all {
 
 androidExtensions {
     experimental = true
+    android.defaultConfig.vectorDrawables.useSupportLibrary = true
 }
 
 dependencies {
