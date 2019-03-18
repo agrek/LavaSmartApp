@@ -9,7 +9,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "com.google.firebase.quickstart.database"
+        applicationId "ca.concordia.gilgamesh"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
