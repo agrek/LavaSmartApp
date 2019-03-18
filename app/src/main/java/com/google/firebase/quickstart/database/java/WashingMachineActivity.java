@@ -1,13 +1,17 @@
 package com.google.firebase.quickstart.database.java;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.support.v4.widget.ImageViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,6 +22,9 @@ import com.google.firebase.quickstart.database.R;
 public class WashingMachineActivity extends AppCompatActivity {
 
     private static final String TAG = "WashingMachineActivity";
+
+    private static final int GREEN = -10053376;
+    private static final int RED = -3407872;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,27 +61,23 @@ public class WashingMachineActivity extends AppCompatActivity {
                 String machine_state = dataSnapshot.getValue(String.class);
 
                 // int color = ImageViewCompat.getImageTintList(statusImageView).getDefaultColor();
-                int color;
+
 
                 if (machine_state.equals("ON")) {
 
-                    color = -10053376; // green
-
                     // set power color to green
-                    ImageViewCompat.setImageTintList(statusImageView, ColorStateList.valueOf(color));
+                    ImageViewCompat.setImageTintList(statusImageView, ColorStateList.valueOf(GREEN));
 
                     // log color change
-                    Log.d(TAG, "COLOR_CHANGE " + machine_state + ":" + color);
+                    Log.d(TAG, "COLOR_CHANGE " + machine_state + ":" + GREEN);
 
                 } else if (machine_state.equals("OFF")) {
 
-                    color = -3407872; // red
-
                     // set power color to green
-                    ImageViewCompat.setImageTintList(statusImageView, ColorStateList.valueOf(color));
+                    ImageViewCompat.setImageTintList(statusImageView, ColorStateList.valueOf(RED));
 
                     // log color change
-                    Log.d(TAG, "COLOR_CHANGE " + machine_state + ":" + color);
+                    Log.d(TAG, "COLOR_CHANGE " + machine_state + ":" + RED);
                 }
 
                 // Set machine status in TextView
@@ -121,5 +124,24 @@ public class WashingMachineActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == R.id.action_logout) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this, SignInActivity.class));
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
