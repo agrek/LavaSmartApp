@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import ca.concordia.gilgamesh.R;
 import ca.concordia.gilgamesh.models.User;
 
@@ -122,7 +123,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         writeNewUser(user.getUid(), username, user.getEmail());
 
         // Go to MainActivity
-        startActivity(new Intent(SignInActivity.this, WashingMachineActivity.class));
+        startActivity(new Intent(SignInActivity.this, FirebaseActionsActivity.class));
         finish();
     }
 
