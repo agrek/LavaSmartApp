@@ -1,1 +1,3 @@
-<manifest package="com.firebase.lintchecks" />
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.firebase.lintchecks">
+</manifest>
