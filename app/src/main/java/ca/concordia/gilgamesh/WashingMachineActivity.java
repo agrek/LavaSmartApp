@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.database;
+package ca.concordia.gilgamesh;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -17,8 +17,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import ca.concordia.gilgamesh.R;
 
-public class WashingMachineActivity extends AppCompatActivity {
+public class WashingMachineActivity extends BaseActivity {
 
     private static final String TAG = "WashingMachineActivity";
 

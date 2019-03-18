@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.database.fragment;
+package ca.concordia.gilgamesh.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,10 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
-import com.google.firebase.quickstart.database.R;
-import com.google.firebase.quickstart.database.PostDetailActivity;
-import com.google.firebase.quickstart.database.models.Post;
-import com.google.firebase.quickstart.database.viewholder.PostViewHolder;
+import ca.concordia.gilgamesh.R;
+import ca.concordia.gilgamesh.PostDetailActivity;
+import ca.concordia.gilgamesh.models.Post;
+import ca.concordia.gilgamesh.viewholder.PostViewHolder;
 
 public abstract class PostListFragment extends Fragment {
 

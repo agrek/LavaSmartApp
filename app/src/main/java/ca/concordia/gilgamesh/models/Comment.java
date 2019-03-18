@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.database.models;
+package ca.concordia.gilgamesh.models;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

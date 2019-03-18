@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.database;
+package ca.concordia.gilgamesh;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,9 +19,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.quickstart.database.models.Comment;
-import com.google.firebase.quickstart.database.models.Post;
-import com.google.firebase.quickstart.database.models.User;
+import ca.concordia.gilgamesh.R;
+import ca.concordia.gilgamesh.models.Comment;
+import ca.concordia.gilgamesh.models.Post;
+import ca.concordia.gilgamesh.models.User;
 
 import java.util.ArrayList;
 import java.util.List;

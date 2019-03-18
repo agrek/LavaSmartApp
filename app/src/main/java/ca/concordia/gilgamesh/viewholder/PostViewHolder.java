@@ -1,12 +1,12 @@
-package com.google.firebase.quickstart.database.viewholder;
+package ca.concordia.gilgamesh.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.quickstart.database.R;
-import com.google.firebase.quickstart.database.models.Post;
+import ca.concordia.gilgamesh.R;
+import ca.concordia.gilgamesh.models.Post;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
 

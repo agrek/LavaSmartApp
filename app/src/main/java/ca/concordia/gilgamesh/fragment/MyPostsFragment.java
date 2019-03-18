@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.database.fragment;
+package ca.concordia.gilgamesh.fragment;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;

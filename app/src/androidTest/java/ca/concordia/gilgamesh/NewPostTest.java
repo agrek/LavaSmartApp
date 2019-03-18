@@ -1,18 +1,23 @@
-package com.google.firebase.quickstart.database;
+package ca.concordia.gilgamesh;
 
 
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.filters.LargeTest;
+
+import ca.concordia.gilgamesh.R;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Random;
+
+import ca.concordia.gilgamesh.SignInActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
@@ -46,7 +51,7 @@ public class NewPostTest {
 
         // Select email field
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.fieldEmail),
+                allOf(ViewMatchers.withId(R.id.fieldEmail),
                         withParent(withId(R.id.layoutEmailPassword)),
                         isDisplayed()));
         appCompatEditText.perform(click());

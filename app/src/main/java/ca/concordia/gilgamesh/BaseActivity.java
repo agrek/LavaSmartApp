@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.database;
+package ca.concordia.gilgamesh;
 
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
