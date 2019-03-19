@@ -8,14 +8,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FirebaseActionsActivity"></activity>
         <activity
-            android:name=".WashingMachineActivity"
-            android:label="@string/activity_washing_machine"
-            android:parentActivityName="ca.concordia.gilgamesh.FirebaseActionsActivity" />
+            android:name=".FirebaseListActivity"
+            android:parentActivityName=".FirebaseActionsActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
+            android:parentActivityName=".FirebaseActionsActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".SignInActivity">
             <intent-filter>
@@ -24,6 +23,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FirebaseActionsActivity" />
+        <activity
+            android:name=".AddLocationActivity"
+            android:parentActivityName=".FirebaseActionsActivity" />
+        <activity
+            android:name=".AddUserActivity"
+            android:parentActivityName=".FirebaseActionsActivity" />
+        <activity
+            android:name=".AddMachineActivity"
+            android:parentActivityName=".FirebaseActionsActivity" />
+        <activity
+            android:name=".WashingMachineActivity"
+            android:label="@string/activity_washing_machine"
+            android:parentActivityName=".FirebaseActionsActivity" />
         <activity android:name=".NewPostActivity" />
         <activity android:name=".PostDetailActivity" />
     </application>

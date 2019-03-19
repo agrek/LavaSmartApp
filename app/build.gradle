@@ -32,7 +32,14 @@ configurations.all {
 
 androidExtensions {
     experimental = true
-    android.defaultConfig.vectorDrawables.useSupportLibrary = true
+}
+
+// https://chris.banes.dev/2016/02/25/appcompat-vector/#enabling-the-flag
+// warning caused by app:srcCompat
+android {
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+    }
 }
 
 dependencies {

@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context="ca.concordia.gilgamesh.WashingMachineActivity">
 
-    <TextView
-        android:id="@+id/statusTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Hello World!"
-        app:layout_constraintEnd_toEndOf="@+id/statusImageView"
-        app:layout_constraintStart_toStartOf="@+id/statusImageView"
-        app:layout_constraintTop_toBottomOf="@+id/statusImageView" />
 
     <TextView
         android:id="@+id/machineTextView"
@@ -65,5 +56,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/machineTextView"
         app:srcCompat="@drawable/washing_machine" />
+
+    <TextView
+        android:id="@+id/statusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Status Placeholder"
+        app:layout_constraintEnd_toEndOf="@+id/statusImageView"
+        app:layout_constraintStart_toStartOf="@+id/statusImageView"
+        app:layout_constraintTop_toBottomOf="@+id/statusImageView" />
 
 </android.support.constraint.ConstraintLayout>
