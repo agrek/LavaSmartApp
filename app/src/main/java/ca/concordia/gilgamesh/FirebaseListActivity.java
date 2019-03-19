@@ -82,43 +82,37 @@ public class FirebaseListActivity extends BaseActivity {
 
                 final int position = tab.getPosition();
 
-                // Toast.makeText(getApplicationContext(), "TabSelected" + String.valueOf(tab.getPosition()), Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "TabSelected" + String.valueOf(position));
-
                 switch (position) {
                     case 0:
-                        Log.d(TAG, "Case 0" + String.valueOf(position));
+                        Log.d(TAG, "TabSelected - Case " + position);
                         findViewById(R.id.fabNewPost).setOnClickListener(null);
                         // Button launches NewPostActivity
                         findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 startActivity(new Intent(FirebaseListActivity.this, NewUserActivity.class));
-                                Log.d(TAG, "OnCLick" + String.valueOf(position));
                             }
                         });
                         break;
                     case 1:
-                        Log.d(TAG, "Case 1" + String.valueOf(position));
+                        Log.d(TAG, "TabSelected - Case " + position);
                         findViewById(R.id.fabNewPost).setOnClickListener(null);
                         // Button launches NewPostActivity
                         findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 startActivity(new Intent(FirebaseListActivity.this, NewLocationActivity.class));
-                                Log.d(TAG, "OnCLick" + String.valueOf(position));
                             }
                         });
                         break;
                     case 2:
-                        Log.d(TAG, "Case 2" + String.valueOf(position));
+                        Log.d(TAG, "TabSelected - Case " + position);
                         findViewById(R.id.fabNewPost).setOnClickListener(null);
                         // Button launches NewPostActivity
                         findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 startActivity(new Intent(FirebaseListActivity.this, NewMachineActivity.class));
-                                Log.d(TAG, "OnCLick" + String.valueOf(position));
                             }
                         });
                         break;
