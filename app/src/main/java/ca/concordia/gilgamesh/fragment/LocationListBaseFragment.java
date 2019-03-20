@@ -110,8 +110,8 @@ public abstract class LocationListBaseFragment extends Fragment {
                     @Override
                     public void onClick(View starView) {
                         // Need to write to both places the post is stored
-                        DatabaseReference globalPostRef = mDatabase.child("posts").child(postRef.getKey());
-                        DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
+                        DatabaseReference globalPostRef = mDatabase.child("locations").child(postRef.getKey());
+                        DatabaseReference userPostRef = mDatabase.child("user-locations").child(model.uid).child(postRef.getKey());
 
                         // Run two transactions
                         onStarClicked(globalPostRef);

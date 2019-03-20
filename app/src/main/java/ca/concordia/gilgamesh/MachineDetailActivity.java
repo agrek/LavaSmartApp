@@ -60,9 +60,9 @@ public class MachineDetailActivity extends BaseActivity implements View.OnClickL
 
         // Initialize Database
         mPostReference = FirebaseDatabase.getInstance().getReference()
-                .child("posts").child(mPostKey);
+                .child("machines").child(mPostKey);
         mCommentsReference = FirebaseDatabase.getInstance().getReference()
-                .child("post-comments").child(mPostKey);
+                .child("machine-comments").child(mPostKey);
 
         // Initialize Views
         mAuthorView = findViewById(R.id.postAuthor);

@@ -5,18 +5,16 @@ import com.google.firebase.database.Query;
 
 public class MachineListFragment extends MachineListBaseFragment {
 
+    private static final String TAG = "MachineListFragment";
+
     public MachineListFragment() {
     }
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
-        // [START my_top_posts_query]
-        // My top posts by number of stars
-        String myUserId = getUid();
-        Query myTopPostsQuery = databaseReference.child("user-posts").child(myUserId)
-                .orderByChild("starCount");
-        // [END my_top_posts_query]
+        // All machines
+        Query recentPostsQuery = databaseReference.child("machines");
 
-        return myTopPostsQuery;
+        return recentPostsQuery;
     }
 }

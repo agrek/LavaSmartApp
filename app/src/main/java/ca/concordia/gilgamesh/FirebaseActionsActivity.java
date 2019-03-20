@@ -49,11 +49,11 @@ public class FirebaseActionsActivity extends BaseActivity {
         });
 
         Button add_user_button = findViewById(R.id.button4);
-        add_user_button.setText(R.string.activity_add_user);
+        add_user_button.setText(R.string.activity_add_patron);
         add_user_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                Intent intent = new Intent(getApplicationContext(), AddUserActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddPatronActivity.class);
                 startActivity(intent);
             }
         });

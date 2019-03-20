@@ -11,13 +11,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import ca.concordia.gilgamesh.fragment.MachineListFragment;
 import ca.concordia.gilgamesh.fragment.LocationListFragment;
-import ca.concordia.gilgamesh.fragment.UserListFragment;
+import ca.concordia.gilgamesh.fragment.PatronListFragment;
 
 public class FirebaseListActivity extends BaseActivity {
 
@@ -34,12 +33,12 @@ public class FirebaseListActivity extends BaseActivity {
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[]{
-                    new UserListFragment(),
+                    new PatronListFragment(),
                     new LocationListFragment(),
                     new MachineListFragment(),
             };
             private final String[] mFragmentNames = new String[]{
-                    getString(R.string.heading_user_list),
+                    getString(R.string.heading_patron_list),
                     getString(R.string.heading_locations_list),
                     getString(R.string.heading_machines_list)
             };
@@ -69,7 +68,7 @@ public class FirebaseListActivity extends BaseActivity {
         findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FirebaseListActivity.this, NewUserActivity.class));
+                startActivity(new Intent(FirebaseListActivity.this, NewPatronActivity.class));
             }
         });
 
@@ -90,7 +89,7 @@ public class FirebaseListActivity extends BaseActivity {
                         findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startActivity(new Intent(FirebaseListActivity.this, NewUserActivity.class));
+                                startActivity(new Intent(FirebaseListActivity.this, NewPatronActivity.class));
                             }
                         });
                         break;

@@ -14,16 +14,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import ca.concordia.gilgamesh.R;
 import ca.concordia.gilgamesh.models.Post;
 import ca.concordia.gilgamesh.models.User;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewUserActivity extends BaseActivity {
+public class NewPatronActivity extends BaseActivity {
 
-    private static final String TAG = "NewUserActivity";
+    private static final String TAG = "NewPatronActivity";
     private static final String REQUIRED = "Required";
 
     // [START declare_database_ref]
@@ -37,7 +36,7 @@ public class NewUserActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_user);
+        setContentView(R.layout.activity_new_patron);
 
         // [START initialize_database_ref]
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -88,7 +87,7 @@ public class NewUserActivity extends BaseActivity {
                         if (user == null) {
                             // User is null, error out
                             Log.e(TAG, "User " + userId + " is unexpectedly null");
-                            Toast.makeText(NewUserActivity.this,
+                            Toast.makeText(NewPatronActivity.this,
                                     "Error: could not fetch user.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
@@ -125,15 +124,15 @@ public class NewUserActivity extends BaseActivity {
 
     // [START write_fan_out]
     private void writeNewPost(String userId, String username, String title, String body) {
-        // Create new post at /user-posts/$userid/$postid and at
-        // /posts/$postid simultaneously
-        String key = mDatabase.child("posts").push().getKey();
+        // Create new post at /user-patrons/$userid/$patronid and at
+        // /patrons/$patronid simultaneously
+        String key = mDatabase.child("patrons").push().getKey();
         Post post = new Post(userId, username, title, body);
         Map<String, Object> postValues = post.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/posts/" + key, postValues);
-        childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
+        childUpdates.put("/patrons/" + key, postValues);
+        childUpdates.put("/user-patrons/" + userId + "/" + key, postValues);
 
         mDatabase.updateChildren(childUpdates);
     }

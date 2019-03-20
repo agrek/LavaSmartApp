@@ -22,17 +22,17 @@
     <string name="submit">Submit</string>
     <string name="activity_add_location">Add a Location</string>
     <string name="activity_add_machine">Add a Machine</string>
-    <string name="activity_add_user">Add a User</string>
+    <string name="activity_add_patron">Add a Patron</string>
     <string name="activity_firebase_list">Firebase List</string>
     <string name="activity_location_list">Location List</string>
     <string name="activity_machine_list">Machine List</string>
     <string name="activity_main">Main Activity</string>
-    <string name="activity_user_list">User List</string>
+    <string name="activity_patron_list">Patron List</string>
     <string name="activity_washing_machine">Washing Machine Status</string>
     <string name="heading_locations_list">Locations</string>
     <string name="heading_machines_list">Machines</string>
     <string name="heading_my_posts">My Posts</string>
     <string name="heading_my_top_posts">My Top Posts</string>
     <string name="heading_recent">Recent</string>
-    <string name="heading_user_list">Users</string>
+    <string name="heading_patron_list">Patrons</string>
 </resources>

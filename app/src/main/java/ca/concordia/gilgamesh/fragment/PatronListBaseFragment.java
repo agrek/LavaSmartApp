@@ -22,13 +22,13 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 
 import ca.concordia.gilgamesh.R;
-import ca.concordia.gilgamesh.UserDetailActivity;
+import ca.concordia.gilgamesh.PatronDetailActivity;
 import ca.concordia.gilgamesh.models.Post;
 import ca.concordia.gilgamesh.viewholder.PostViewHolder;
 
-public abstract class UserListBaseFragment extends Fragment {
+public abstract class PatronListBaseFragment extends Fragment {
 
-    private static final String TAG = "UserListBaseFragment";
+    private static final String TAG = "PatronListBaseFragment";
 
     // [START define_database_reference]
     private DatabaseReference mDatabase;
@@ -38,14 +38,14 @@ public abstract class UserListBaseFragment extends Fragment {
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
-    public UserListBaseFragment() {
+    public PatronListBaseFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_all_users, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_all_patrons, container, false);
 
         // [START create_database_reference]
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -79,7 +79,7 @@ public abstract class UserListBaseFragment extends Fragment {
             @Override
             public PostViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new PostViewHolder(inflater.inflate(R.layout.item_user, viewGroup, false));
+                return new PostViewHolder(inflater.inflate(R.layout.item_patron, viewGroup, false));
             }
 
             @Override
@@ -91,9 +91,9 @@ public abstract class UserListBaseFragment extends Fragment {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Launch UserDetailActivity
-                        Intent intent = new Intent(getActivity(), UserDetailActivity.class);
-                        intent.putExtra(UserDetailActivity.EXTRA_POST_KEY, postKey);
+                        // Launch PatronDetailActivity
+                        Intent intent = new Intent(getActivity(), PatronDetailActivity.class);
+                        intent.putExtra(PatronDetailActivity.EXTRA_POST_KEY, postKey);
                         startActivity(intent);
                     }
                 });
@@ -110,8 +110,8 @@ public abstract class UserListBaseFragment extends Fragment {
                     @Override
                     public void onClick(View starView) {
                         // Need to write to both places the post is stored
-                        DatabaseReference globalPostRef = mDatabase.child("posts").child(postRef.getKey());
-                        DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
+                        DatabaseReference globalPostRef = mDatabase.child("patrons").child(postRef.getKey());
+                        DatabaseReference userPostRef = mDatabase.child("user-patrons").child(model.uid).child(postRef.getKey());
 
                         // Run two transactions
                         onStarClicked(globalPostRef);

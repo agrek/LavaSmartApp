@@ -20,7 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import ca.concordia.gilgamesh.R;
 import ca.concordia.gilgamesh.models.Comment;
 import ca.concordia.gilgamesh.models.Post;
 import ca.concordia.gilgamesh.models.User;
@@ -28,9 +27,9 @@ import ca.concordia.gilgamesh.models.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDetailActivity extends BaseActivity implements View.OnClickListener {
+public class PatronDetailActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "UserDetailActivity";
+    private static final String TAG = "PatronDetailActivity";
 
     public static final String EXTRA_POST_KEY = "post_key";
 
@@ -50,7 +49,7 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_detail);
+        setContentView(R.layout.activity_patron_detail);
 
         // Get post key from intent
         mPostKey = getIntent().getStringExtra(EXTRA_POST_KEY);
@@ -60,9 +59,9 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
 
         // Initialize Database
         mPostReference = FirebaseDatabase.getInstance().getReference()
-                .child("posts").child(mPostKey);
+                .child("patrons").child(mPostKey);
         mCommentsReference = FirebaseDatabase.getInstance().getReference()
-                .child("post-comments").child(mPostKey);
+                .child("patron-comments").child(mPostKey);
 
         // Initialize Views
         mAuthorView = findViewById(R.id.postAuthor);
@@ -100,7 +99,7 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
                 // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
                 // [START_EXCLUDE]
-                Toast.makeText(UserDetailActivity.this, "Failed to load post.",
+                Toast.makeText(PatronDetailActivity.this, "Failed to load post.",
                         Toast.LENGTH_SHORT).show();
                 // [END_EXCLUDE]
             }

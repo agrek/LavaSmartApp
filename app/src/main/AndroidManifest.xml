@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MachineDetailActivity" />
         <activity android:name=".LocationDetailActivity" />
-        <activity android:name=".UserDetailActivity" />
+        <activity android:name=".PatronDetailActivity" />
         <activity
             android:name=".NewLocationActivity"
             android:parentActivityName=".FirebaseListActivity" />
@@ -18,7 +18,7 @@
             android:name=".NewMachineActivity"
             android:parentActivityName=".FirebaseListActivity" />
         <activity
-            android:name=".NewUserActivity"
+            android:name=".NewPatronActivity"
             android:parentActivityName=".FirebaseListActivity" />
         <activity
             android:name=".FirebaseListActivity"
@@ -40,7 +40,7 @@
             android:name=".AddLocationActivity"
             android:parentActivityName=".FirebaseActionsActivity" />
         <activity
-            android:name=".AddUserActivity"
+            android:name=".AddPatronActivity"
             android:parentActivityName=".FirebaseActionsActivity" />
         <activity
             android:name=".AddMachineActivity"

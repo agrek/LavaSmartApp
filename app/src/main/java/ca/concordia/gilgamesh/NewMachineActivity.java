@@ -125,15 +125,15 @@ public class NewMachineActivity extends BaseActivity {
 
     // [START write_fan_out]
     private void writeNewPost(String userId, String username, String title, String body) {
-        // Create new post at /user-posts/$userid/$postid and at
-        // /posts/$postid simultaneously
-        String key = mDatabase.child("posts").push().getKey();
+        // Create new post at /user-machines/$userid/$machineid and at
+        // /machines/$machineid simultaneously
+        String key = mDatabase.child("machines").push().getKey();
         Post post = new Post(userId, username, title, body);
         Map<String, Object> postValues = post.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/posts/" + key, postValues);
-        childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
+        childUpdates.put("/machines/" + key, postValues);
+        childUpdates.put("/user-machines/" + userId + "/" + key, postValues);
 
         mDatabase.updateChildren(childUpdates);
     }

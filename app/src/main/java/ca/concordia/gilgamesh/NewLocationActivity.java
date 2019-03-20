@@ -125,15 +125,15 @@ public class NewLocationActivity extends BaseActivity {
 
     // [START write_fan_out]
     private void writeNewPost(String userId, String username, String title, String body) {
-        // Create new post at /user-posts/$userid/$postid and at
-        // /posts/$postid simultaneously
-        String key = mDatabase.child("posts").push().getKey();
+        // Create new post at /user-locations/$userid/$locationid and at
+        // /locations/$locationid simultaneously
+        String key = mDatabase.child("locations").push().getKey();
         Post post = new Post(userId, username, title, body);
         Map<String, Object> postValues = post.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/posts/" + key, postValues);
-        childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
+        childUpdates.put("/locations/" + key, postValues);
+        childUpdates.put("/user-locations/" + userId + "/" + key, postValues);
 
         mDatabase.updateChildren(childUpdates);
     }

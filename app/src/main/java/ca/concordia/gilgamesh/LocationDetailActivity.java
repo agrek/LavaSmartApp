@@ -60,9 +60,9 @@ public class LocationDetailActivity extends BaseActivity implements View.OnClick
 
         // Initialize Database
         mPostReference = FirebaseDatabase.getInstance().getReference()
-                .child("posts").child(mPostKey);
+                .child("locations").child(mPostKey);
         mCommentsReference = FirebaseDatabase.getInstance().getReference()
-                .child("post-comments").child(mPostKey);
+                .child("location-comments").child(mPostKey);
 
         // Initialize Views
         mAuthorView = findViewById(R.id.postAuthor);
