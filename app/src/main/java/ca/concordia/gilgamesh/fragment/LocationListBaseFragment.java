@@ -22,7 +22,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 
 import ca.concordia.gilgamesh.R;
-import ca.concordia.gilgamesh.PostDetailActivity;
+import ca.concordia.gilgamesh.LocationDetailActivity;
 import ca.concordia.gilgamesh.models.Post;
 import ca.concordia.gilgamesh.viewholder.PostViewHolder;
 
@@ -91,9 +91,9 @@ public abstract class LocationListBaseFragment extends Fragment {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Launch PostDetailActivity
-                        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
-                        intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
+                        // Launch LocationDetailActivity
+                        Intent intent = new Intent(getActivity(), LocationDetailActivity.class);
+                        intent.putExtra(LocationDetailActivity.EXTRA_POST_KEY, postKey);
                         startActivity(intent);
                     }
                 });

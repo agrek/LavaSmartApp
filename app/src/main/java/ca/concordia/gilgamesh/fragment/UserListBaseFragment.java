@@ -22,7 +22,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 
 import ca.concordia.gilgamesh.R;
-import ca.concordia.gilgamesh.PostDetailActivity;
+import ca.concordia.gilgamesh.UserDetailActivity;
 import ca.concordia.gilgamesh.models.Post;
 import ca.concordia.gilgamesh.viewholder.PostViewHolder;
 
@@ -91,9 +91,9 @@ public abstract class UserListBaseFragment extends Fragment {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Launch PostDetailActivity
-                        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
-                        intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
+                        // Launch UserDetailActivity
+                        Intent intent = new Intent(getActivity(), UserDetailActivity.class);
+                        intent.putExtra(UserDetailActivity.EXTRA_POST_KEY, postKey);
                         startActivity(intent);
                     }
                 });
