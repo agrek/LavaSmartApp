@@ -32,6 +32,7 @@
         android:layout_below="@+id/postTextLayout"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
+        android:visibility="invisible"
         android:weightSum="1.0">
 
         <EditText
@@ -52,11 +53,22 @@
 
     </LinearLayout>
 
+    <include
+        android:id="@+id/locationTextLayout"
+        layout="@layout/include_machine_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/postTextLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerPostComments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/commentForm"
+        android:visibility="invisible"
         tools:listitem="@layout/item_comment" />
 
 </RelativeLayout>

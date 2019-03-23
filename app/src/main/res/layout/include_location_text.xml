@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/locationNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Location Name:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/locationNameValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/locationNumMachinesTextView"
+            app:layout_constraintTop_toTopOf="@+id/locationNameTextView" />
+
+        <TextView
+            android:id="@+id/locationIdTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Location ID:"
+            app:layout_constraintStart_toStartOf="@+id/locationNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/locationNameValueTextView" />
+
+        <TextView
+            android:id="@+id/locationIdValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/locationNameValueTextView"
+            app:layout_constraintTop_toTopOf="@+id/locationIdTextView" />
+
+        <TextView
+            android:id="@+id/locationManagerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Location Manager:"
+            app:layout_constraintStart_toStartOf="@+id/locationNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/locationIdValueTextView" />
+
+        <TextView
+            android:id="@+id/locationManagerValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/locationNameValueTextView"
+            app:layout_constraintTop_toTopOf="@+id/locationManagerTextView" />
+
+        <TextView
+            android:id="@+id/locationQrTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Location QR:"
+            app:layout_constraintStart_toStartOf="@+id/locationNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/locationManagerValueTextView" />
+
+        <TextView
+            android:id="@+id/locationQrValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/locationNameValueTextView"
+            app:layout_constraintTop_toTopOf="@+id/locationQrTextView" />
+
+        <TextView
+            android:id="@+id/locationNumMachinesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Number of Machines:"
+            app:layout_constraintStart_toStartOf="@+id/locationNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/locationQrValueTextView" />
+
+        <TextView
+            android:id="@+id/locationNumMachinesValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/locationQrValueTextView"
+            app:layout_constraintTop_toTopOf="@+id/locationNumMachinesTextView" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
