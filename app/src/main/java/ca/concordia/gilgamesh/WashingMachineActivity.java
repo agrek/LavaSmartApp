@@ -3,7 +3,6 @@ package ca.concordia.gilgamesh;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.support.v4.widget.ImageViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,7 +16,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import ca.concordia.gilgamesh.R;
 
 public class WashingMachineActivity extends BaseActivity {
 

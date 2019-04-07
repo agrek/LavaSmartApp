@@ -15,8 +15,6 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 
 import ca.concordia.gilgamesh.fragment.MachineListFragment;
-import ca.concordia.gilgamesh.fragment.LocationListFragment;
-import ca.concordia.gilgamesh.fragment.PatronListFragment;
 
 public class FirebaseListActivity extends BaseActivity {
 
@@ -33,13 +31,14 @@ public class FirebaseListActivity extends BaseActivity {
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[]{
-                    new PatronListFragment(),
-                    new LocationListFragment(),
+                    // TODO: remove comments
+                    // new PatronListFragment(),
+                    // new LocationListFragment(),
                     new MachineListFragment(),
             };
             private final String[] mFragmentNames = new String[]{
-                    getString(R.string.heading_patron_list),
-                    getString(R.string.heading_locations_list),
+                    // getString(R.string.heading_patrons_list),
+                    // getString(R.string.heading_locations_list),
                     getString(R.string.heading_machines_list)
             };
 
@@ -68,7 +67,7 @@ public class FirebaseListActivity extends BaseActivity {
         findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FirebaseListActivity.this, NewPatronActivity.class));
+                startActivity(new Intent(FirebaseListActivity.this, NewAddMachineActivity.class));
             }
         });
 
@@ -81,41 +80,52 @@ public class FirebaseListActivity extends BaseActivity {
 
                 final int position = tab.getPosition();
 
-                switch (position) {
-                    case 0:
-                        Log.d(TAG, "TabSelected - Case " + position);
-                        findViewById(R.id.fabNewPost).setOnClickListener(null);
-                        // Button launches NewPostActivity
-                        findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(FirebaseListActivity.this, NewPatronActivity.class));
-                            }
-                        });
-                        break;
-                    case 1:
-                        Log.d(TAG, "TabSelected - Case " + position);
-                        findViewById(R.id.fabNewPost).setOnClickListener(null);
-                        // Button launches NewPostActivity
-                        findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(FirebaseListActivity.this, NewLocationActivity.class));
-                            }
-                        });
-                        break;
-                    case 2:
-                        Log.d(TAG, "TabSelected - Case " + position);
-                        findViewById(R.id.fabNewPost).setOnClickListener(null);
-                        // Button launches NewPostActivity
-                        findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(FirebaseListActivity.this, NewMachineActivity.class));
-                            }
-                        });
-                        break;
+                String txt = tab.getText().toString();
+
+                final String PATRON = getResources().getString(R.string.heading_patrons_list);
+                final String LOCATION = getResources().getString(R.string.heading_locations_list);
+                final String MACHINE = getResources().getString(R.string.heading_machines_list);
+
+                if (txt.equals(PATRON)) {
+
+                    Log.d(TAG, "TabSelected - Case " + position);
+                    findViewById(R.id.fabNewPost).setOnClickListener(null);
+                    // Button launches NewPostActivity
+                    findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(FirebaseListActivity.this, NewPatronActivity.class));
+                        }
+                    });
+                } else if (txt.equals(LOCATION)) {
+
+                    Log.d(TAG, "TabSelected - Case " + position);
+                    findViewById(R.id.fabNewPost).setOnClickListener(null);
+                    // Button launches NewPostActivity
+                    findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(FirebaseListActivity.this, NewLocationActivity.class));
+                        }
+                    });
+
+                } else if (txt.equals(MACHINE)) {
+
+                    Log.d(TAG, "TabSelected - Case " + position);
+                    findViewById(R.id.fabNewPost).setOnClickListener(null);
+                    // Button launches NewPostActivity
+                    findViewById(R.id.fabNewPost).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // TODO: change this stuff
+                            // startActivity(new Intent(FirebaseListActivity.this, NewMachineActivity.class));
+                            startActivity(new Intent(FirebaseListActivity.this, NewAddMachineActivity.class));
+                        }
+                    });
+
                 }
+
+
             }
 
             @Override

@@ -20,7 +20,8 @@
         android:text="Welcome!"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/splashTitle"
@@ -43,12 +44,12 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/fieldQr"
+            android:id="@+id/fieldId"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:gravity="center_horizontal"
-            android:hint="@string/hint_qr"
+            android:hint="@string/hint_id"
             android:inputType="text"
             android:maxLines="1" />
 

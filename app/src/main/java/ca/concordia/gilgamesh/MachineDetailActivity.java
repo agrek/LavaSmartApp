@@ -20,13 +20,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import ca.concordia.gilgamesh.R;
-import ca.concordia.gilgamesh.models.Comment;
-import ca.concordia.gilgamesh.models.Post;
-import ca.concordia.gilgamesh.models.User;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import ca.concordia.gilgamesh.models.Comment;
+import ca.concordia.gilgamesh.models.PostMachine;
+import ca.concordia.gilgamesh.models.User;
 
 public class MachineDetailActivity extends BaseActivity implements View.OnClickListener {
 
@@ -46,6 +45,11 @@ public class MachineDetailActivity extends BaseActivity implements View.OnClickL
     private EditText mCommentField;
     private Button mCommentButton;
     private RecyclerView mCommentsRecycler;
+
+    private TextView mMachineLocationValueTextView;
+    private TextView mMachineIdValueTextView;
+    private TextView mMachineStatusValueTextView;
+    private TextView mMachineQrValueTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,11 @@ public class MachineDetailActivity extends BaseActivity implements View.OnClickL
         mCommentButton = findViewById(R.id.buttonPostComment);
         mCommentsRecycler = findViewById(R.id.recyclerPostComments);
 
+        mMachineLocationValueTextView = findViewById(R.id.machineLocationValueTextView);
+        mMachineIdValueTextView = findViewById(R.id.machineIdValueTextView);
+        mMachineStatusValueTextView = findViewById(R.id.machineStatusValueTextView);
+        mMachineQrValueTextView = findViewById(R.id.machineQrValueTextView);
+
         mCommentButton.setOnClickListener(this);
         mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
 
@@ -87,12 +96,18 @@ public class MachineDetailActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
-                Post post = dataSnapshot.getValue(Post.class);
+                PostMachine post = dataSnapshot.getValue(PostMachine.class);
                 // [START_EXCLUDE]
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);
                 mBodyView.setText(post.body);
                 // [END_EXCLUDE]
+
+                mMachineLocationValueTextView.setText(post.location);
+                mMachineIdValueTextView.setText(post.id);
+                mMachineStatusValueTextView.setText(post.status);
+                mMachineQrValueTextView.setText(post.qr);
+
             }
 
             @Override

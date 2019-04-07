@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LavaMachineDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/logo" />
+
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Status_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status:"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/Status__TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="OFF"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="36sp" />
+
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+        <TextView
+            android:id="@+id/MachineName_TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Machine Name"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="36sp" />
+
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/MachineNotifyMe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notify Me"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="36sp" />
+
+            <Switch
+                android:id="@+id/NotifyMe_Switch"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:text="Switch" />
+
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+        <Button
+            android:id="@+id/DeleteMachine_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#5cb5ff"
+            android:text="Delete machine" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

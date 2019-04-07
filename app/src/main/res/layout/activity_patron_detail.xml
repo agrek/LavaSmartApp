@@ -13,7 +13,8 @@
         layout="@layout/include_post_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:visibility="gone" />
 
     <include
         android:id="@+id/postTextLayout"
@@ -23,7 +24,8 @@
         android:layout_below="@+id/postAuthorLayout"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/commentForm"

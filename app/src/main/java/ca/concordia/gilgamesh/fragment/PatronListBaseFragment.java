@@ -23,8 +23,8 @@ import com.google.firebase.database.Transaction;
 
 import ca.concordia.gilgamesh.R;
 import ca.concordia.gilgamesh.PatronDetailActivity;
-import ca.concordia.gilgamesh.models.Post;
-import ca.concordia.gilgamesh.viewholder.PostViewHolder;
+import ca.concordia.gilgamesh.models.PostPatron;
+import ca.concordia.gilgamesh.viewholder.PatronViewHolder;
 
 public abstract class PatronListBaseFragment extends Fragment {
 
@@ -34,7 +34,7 @@ public abstract class PatronListBaseFragment extends Fragment {
     private DatabaseReference mDatabase;
     // [END define_database_reference]
 
-    private FirebaseRecyclerAdapter<Post, PostViewHolder> mAdapter;
+    private FirebaseRecyclerAdapter<PostPatron, PatronViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
@@ -70,20 +70,20 @@ public abstract class PatronListBaseFragment extends Fragment {
         // Set up FirebaseRecyclerAdapter with the Query
         Query postsQuery = getQuery(mDatabase);
 
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Post>()
-                .setQuery(postsQuery, Post.class)
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<PostPatron>()
+                .setQuery(postsQuery, PostPatron.class)
                 .build();
 
-        mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<PostPatron, PatronViewHolder>(options) {
 
             @Override
-            public PostViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            public PatronViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new PostViewHolder(inflater.inflate(R.layout.item_patron, viewGroup, false));
+                return new PatronViewHolder(inflater.inflate(R.layout.item_patron, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder(PostViewHolder viewHolder, int position, final Post model) {
+            protected void onBindViewHolder(PatronViewHolder viewHolder, int position, final PostPatron model) {
                 final DatabaseReference postRef = getRef(position);
 
                 // Set click listener for the whole post view
@@ -128,7 +128,7 @@ public abstract class PatronListBaseFragment extends Fragment {
         postRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                Post p = mutableData.getValue(Post.class);
+                PostPatron p = mutableData.getValue(PostPatron.class);
                 if (p == null) {
                     return Transaction.success(mutableData);
                 }

@@ -6,25 +6,32 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Machine {
 
+    public String location;
     public String status;
-    public int starttime;
-    public int stoptime;
-    public String qr;
+    public String custom_id;
+    public String name;
 
     public Machine() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Machine(String status, int starttime, int stoptime, String qr) {
+    public Machine(String name, String location, String status) {
+        this.location = location;
         this.status = status;
-        this.starttime = starttime;
-        this.stoptime = stoptime;
-        this.qr = qr;
+        this.name = name;
     }
 
-    public Machine(String status, String qr) {
-        this.status = status;
-        this.qr = qr;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }
 // [END blog_user_class]

@@ -27,7 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
-import ca.concordia.gilgamesh.R;
+
 import ca.concordia.gilgamesh.fragment.MyPostsFragment;
 import ca.concordia.gilgamesh.fragment.MyTopPostsFragment;
 import ca.concordia.gilgamesh.fragment.RecentPostsFragment;

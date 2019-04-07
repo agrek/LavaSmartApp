@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import ca.concordia.gilgamesh.R;
 import ca.concordia.gilgamesh.models.Comment;
-import ca.concordia.gilgamesh.models.Post;
+import ca.concordia.gilgamesh.models.PostLocation;
 import ca.concordia.gilgamesh.models.User;
 
 import java.util.ArrayList;
@@ -46,6 +46,12 @@ public class LocationDetailActivity extends BaseActivity implements View.OnClick
     private EditText mCommentField;
     private Button mCommentButton;
     private RecyclerView mCommentsRecycler;
+
+    public TextView mLocationNameValueTextView;
+    public TextView mLocationIdValueTextView;
+    public TextView mLocationManagerValueTextView;
+    public TextView mLocationQrValueTextView;
+    public TextView mLocationNumMachinesValueTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +78,12 @@ public class LocationDetailActivity extends BaseActivity implements View.OnClick
         mCommentButton = findViewById(R.id.buttonPostComment);
         mCommentsRecycler = findViewById(R.id.recyclerPostComments);
 
+        mLocationNameValueTextView = findViewById(R.id.locationNameValueTextView);
+        mLocationIdValueTextView = findViewById(R.id.locationIdValueTextView);
+        mLocationManagerValueTextView = findViewById(R.id.locationManagerValueTextView);
+        mLocationQrValueTextView = findViewById(R.id.locationQrValueTextView);
+        mLocationNumMachinesValueTextView = findViewById(R.id.locationNumMachinesValueTextView);
+
         mCommentButton.setOnClickListener(this);
         mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
 
@@ -87,12 +99,19 @@ public class LocationDetailActivity extends BaseActivity implements View.OnClick
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
-                Post post = dataSnapshot.getValue(Post.class);
+                PostLocation post = dataSnapshot.getValue(PostLocation.class);
                 // [START_EXCLUDE]
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);
                 mBodyView.setText(post.body);
                 // [END_EXCLUDE]
+
+                mLocationNameValueTextView.setText(post.name);
+                mLocationIdValueTextView.setText(post.name);
+                mLocationManagerValueTextView.setText(post.manager);
+                mLocationQrValueTextView.setText(post.qr);
+                mLocationNumMachinesValueTextView.setText("mNumMachinesPlaceholder");
+
             }
 
             @Override

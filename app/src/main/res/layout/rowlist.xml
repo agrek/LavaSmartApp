@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/MachineName_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="120dp"
+        android:fontFamily="@font/audiowide"
+        android:text="Machine Name"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/MachineLocation_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="Location"
+        android:textColor="#656565"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/MachineStatus_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textColor="#656565"
+        android:textSize="24sp" />
+
+</LinearLayout>

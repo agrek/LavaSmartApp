@@ -15,10 +15,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import ca.concordia.gilgamesh.R;
+import ca.concordia.gilgamesh.models.Location;
 import ca.concordia.gilgamesh.models.User;
 
 public class SignInActivity extends BaseActivity implements View.OnClickListener {
@@ -36,16 +39,17 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_lava_login_page);
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
         // Views
-        mEmailField = findViewById(R.id.fieldEmail);
-        mPasswordField = findViewById(R.id.fieldPassword);
-        mSignInButton = findViewById(R.id.buttonSignIn);
-        mSignUpButton = findViewById(R.id.buttonSignUp);
+        mEmailField = findViewById(R.id.Email_EditText);
+        mPasswordField = findViewById(R.id.Password_EditText);
+        mSignInButton = findViewById(R.id.SignIn_Button);
+        mSignUpButton = findViewById(R.id.SignUp_Button);
 
         // Click listeners
         mSignInButton.setOnClickListener(this);
@@ -123,7 +127,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         writeNewUser(user.getUid(), username, user.getEmail());
 
         // Go to MainActivity
-        startActivity(new Intent(SignInActivity.this, FirebaseActionsActivity.class));
+        startActivity(new Intent(SignInActivity.this, UserTypeActivity.class));
         finish();
     }
 
@@ -154,20 +158,53 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         return result;
     }
 
-    // [START basic_write]
     private void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
 
-        mDatabase.child("users").child(userId).setValue(user);
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        final DatabaseReference databaseRef = database.getReference();
+
+
+        final Location location = new Location();
+        location.name = "default_location";
+
+        final String pName = name;
+        final String pUserId = userId;
+        final String pEmail = email;
+
+
+        databaseRef.child("users").child(getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (!dataSnapshot.exists()) {
+                    // user does not exist
+                    String defaultLocation = mDatabase.child("locations").push().getKey();
+
+                    databaseRef.child("locations").child(defaultLocation).setValue(location);
+
+                    User user = new User(pName, pEmail, defaultLocation);
+                    databaseRef.child("users").child(pUserId).setValue(user);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
-    // [END basic_write]
+
 
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.buttonSignIn) {
+        if (i == R.id.SignIn_Button) {
             signIn();
-        } else if (i == R.id.buttonSignUp) {
+        } else if (i == R.id.SignUp_Button) {
             signUp();
         }
     }

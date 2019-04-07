@@ -10,9 +10,10 @@ import java.util.Map;
 public class Patron {
 
     public String username;
+    public String name;
     public String email;
-    public Map<String, Boolean> savedmachines = new HashMap<>();
-    public Map<String, Boolean> ownedmachines = new HashMap<>();
+    public Map<String, Boolean> saved_machines = new HashMap<>();
+    public Map<String, Boolean> owned_machines = new HashMap<>();
 
     public Patron() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -23,11 +24,11 @@ public class Patron {
         this.email = email;
     }
 
-    public Patron(String username, String email, Map<String, Boolean> savedmachines, Map<String, Boolean> ownedmachines) {
+    public Patron(String username, String email, Map<String, Boolean> saved_machines, Map<String, Boolean> owned_machines) {
         this.username = username;
         this.email = email;
-        this.savedmachines = savedmachines;
-        this.ownedmachines = ownedmachines;
+        this.saved_machines = saved_machines;
+        this.owned_machines = owned_machines;
     }
 }
 // [END blog_patron_class]

@@ -73,7 +73,7 @@
             android:maxLines="1" />
 
         <EditText
-            android:id="@+id/fieldQr"
+            android:id="@+id/fieldId"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"

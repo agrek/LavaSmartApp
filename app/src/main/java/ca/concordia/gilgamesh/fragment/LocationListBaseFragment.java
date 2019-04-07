@@ -23,8 +23,8 @@ import com.google.firebase.database.Transaction;
 
 import ca.concordia.gilgamesh.R;
 import ca.concordia.gilgamesh.LocationDetailActivity;
-import ca.concordia.gilgamesh.models.Post;
-import ca.concordia.gilgamesh.viewholder.PostViewHolder;
+import ca.concordia.gilgamesh.models.PostLocation;
+import ca.concordia.gilgamesh.viewholder.LocationViewHolder;
 
 public abstract class LocationListBaseFragment extends Fragment {
 
@@ -34,7 +34,7 @@ public abstract class LocationListBaseFragment extends Fragment {
     private DatabaseReference mDatabase;
     // [END define_database_reference]
 
-    private FirebaseRecyclerAdapter<Post, PostViewHolder> mAdapter;
+    private FirebaseRecyclerAdapter<PostLocation, LocationViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
@@ -70,20 +70,20 @@ public abstract class LocationListBaseFragment extends Fragment {
         // Set up FirebaseRecyclerAdapter with the Query
         Query postsQuery = getQuery(mDatabase);
 
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Post>()
-                .setQuery(postsQuery, Post.class)
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<PostLocation>()
+                .setQuery(postsQuery, PostLocation.class)
                 .build();
 
-        mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<PostLocation, LocationViewHolder>(options) {
 
             @Override
-            public PostViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            public LocationViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new PostViewHolder(inflater.inflate(R.layout.item_location, viewGroup, false));
+                return new LocationViewHolder(inflater.inflate(R.layout.item_location, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder(PostViewHolder viewHolder, int position, final Post model) {
+            protected void onBindViewHolder(LocationViewHolder viewHolder, int position, final PostLocation model) {
                 final DatabaseReference postRef = getRef(position);
 
                 // Set click listener for the whole post view
@@ -128,7 +128,7 @@ public abstract class LocationListBaseFragment extends Fragment {
         postRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                Post p = mutableData.getValue(Post.class);
+                PostLocation p = mutableData.getValue(PostLocation.class);
                 if (p == null) {
                     return Transaction.success(mutableData);
                 }

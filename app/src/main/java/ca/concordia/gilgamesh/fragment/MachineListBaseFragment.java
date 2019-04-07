@@ -23,8 +23,8 @@ import com.google.firebase.database.Transaction;
 
 import ca.concordia.gilgamesh.R;
 import ca.concordia.gilgamesh.MachineDetailActivity;
-import ca.concordia.gilgamesh.models.Post;
-import ca.concordia.gilgamesh.viewholder.PostViewHolder;
+import ca.concordia.gilgamesh.models.PostMachine;
+import ca.concordia.gilgamesh.viewholder.MachineViewHolder;
 
 public abstract class MachineListBaseFragment extends Fragment {
 
@@ -34,7 +34,7 @@ public abstract class MachineListBaseFragment extends Fragment {
     private DatabaseReference mDatabase;
     // [END define_database_reference]
 
-    private FirebaseRecyclerAdapter<Post, PostViewHolder> mAdapter;
+    private FirebaseRecyclerAdapter<PostMachine, MachineViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
@@ -63,27 +63,28 @@ public abstract class MachineListBaseFragment extends Fragment {
 
         // Set up Layout Manager, reverse layout
         mManager = new LinearLayoutManager(getActivity());
-        mManager.setReverseLayout(true);
-        mManager.setStackFromEnd(true);
+        // TODO: changed to false temporarily, please keep as true
+        mManager.setReverseLayout(false);
+        mManager.setStackFromEnd(false);
         mRecycler.setLayoutManager(mManager);
 
         // Set up FirebaseRecyclerAdapter with the Query
         Query postsQuery = getQuery(mDatabase);
 
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Post>()
-                .setQuery(postsQuery, Post.class)
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<PostMachine>()
+                .setQuery(postsQuery, PostMachine.class)
                 .build();
 
-        mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<PostMachine, MachineViewHolder>(options) {
 
             @Override
-            public PostViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            public MachineViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new PostViewHolder(inflater.inflate(R.layout.item_machine, viewGroup, false));
+                return new MachineViewHolder(inflater.inflate(R.layout.item_machine, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder(PostViewHolder viewHolder, int position, final Post model) {
+            protected void onBindViewHolder(MachineViewHolder viewHolder, int position, final PostMachine model) {
                 final DatabaseReference postRef = getRef(position);
 
                 // Set click listener for the whole post view
@@ -128,7 +129,7 @@ public abstract class MachineListBaseFragment extends Fragment {
         postRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                Post p = mutableData.getValue(Post.class);
+                PostMachine p = mutableData.getValue(PostMachine.class);
                 if (p == null) {
                     return Transaction.success(mutableData);
                 }

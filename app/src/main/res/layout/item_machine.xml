@@ -15,7 +15,8 @@
             layout="@layout/include_post_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/starLayout"
@@ -25,7 +26,8 @@
             android:layout_alignBottom="@+id/postAuthorLayout"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/star"
@@ -55,12 +57,13 @@
             android:layout_below="@+id/postAuthorLayout"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:visibility="gone" />
 
         <include
             layout="@layout/include_machine_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_below="@+id/include_post_text"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp"

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserTypeActivity">
+
+    <LinearLayout
+        android:layout_width="341dp"
+        android:layout_height="106dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginRight="100dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/Tenant_Button"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#5cb5ff"
+            android:text="TENANT" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Click here to add a location with the code given by your manager."
+
+            android:textAlignment="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="310dp"
+        android:layout_marginRight="100dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/Manager_Button"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#5cb5ff"
+            android:shape="oval"
+            android:text="MANAGER" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Click here to create a new location and add machines to it."
+            android:textAlignment="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+    </LinearLayout>
+</RelativeLayout>

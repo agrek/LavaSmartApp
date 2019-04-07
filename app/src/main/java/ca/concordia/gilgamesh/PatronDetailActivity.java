@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import ca.concordia.gilgamesh.models.Comment;
-import ca.concordia.gilgamesh.models.Post;
+import ca.concordia.gilgamesh.models.PostPatron;
 import ca.concordia.gilgamesh.models.User;
 
 import java.util.ArrayList;
@@ -45,6 +45,13 @@ public class PatronDetailActivity extends BaseActivity implements View.OnClickLi
     private EditText mCommentField;
     private Button mCommentButton;
     private RecyclerView mCommentsRecycler;
+
+    public TextView mPatronNameValueTextView;
+    public TextView mPatronIdValueTextView;
+    public TextView mPatronEmailValueTextView;
+    public TextView mPatronUsernameValueTextView;
+    public TextView mPatronNumSavedMachinesValueTextView;
+    public TextView mPatronNumOwnedMachinesValueTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +78,13 @@ public class PatronDetailActivity extends BaseActivity implements View.OnClickLi
         mCommentButton = findViewById(R.id.buttonPostComment);
         mCommentsRecycler = findViewById(R.id.recyclerPostComments);
 
+        mPatronNameValueTextView = findViewById(R.id.patronNameValueTextView);
+        mPatronIdValueTextView = findViewById(R.id.patronIdValueTextView);
+        mPatronEmailValueTextView = findViewById(R.id.patronEmailValueTextView);
+        mPatronUsernameValueTextView = findViewById(R.id.patronUsernameValueTextView);
+        mPatronNumSavedMachinesValueTextView = findViewById(R.id.patronNumSavedMachinesValueTextView);
+        mPatronNumOwnedMachinesValueTextView = findViewById(R.id.patronNumOwnedMachinesValueTextView);
+
         mCommentButton.setOnClickListener(this);
         mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
 
@@ -86,12 +100,20 @@ public class PatronDetailActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
-                Post post = dataSnapshot.getValue(Post.class);
+                PostPatron post = dataSnapshot.getValue(PostPatron.class);
                 // [START_EXCLUDE]
                 mAuthorView.setText(post.author);
                 mTitleView.setText(post.title);
                 mBodyView.setText(post.body);
                 // [END_EXCLUDE]
+
+                mPatronNameValueTextView.setText(post.name);
+                mPatronIdValueTextView.setText(post.uid);
+                mPatronEmailValueTextView.setText(post.email);
+                mPatronUsernameValueTextView.setText(post.username);
+                mPatronNumSavedMachinesValueTextView.setText("mNumSavedMachinesPlaceholder");
+                mPatronNumOwnedMachinesValueTextView.setText("mNumOwnedMachinesPlaceholder");
+
             }
 
             @Override

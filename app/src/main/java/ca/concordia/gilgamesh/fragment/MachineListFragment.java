@@ -13,7 +13,7 @@ public class MachineListFragment extends MachineListBaseFragment {
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
         // All machines
-        Query recentPostsQuery = databaseReference.child("machines");
+        Query recentPostsQuery = databaseReference.child("machines").orderByChild("enabled").equalTo(true);
 
         return recentPostsQuery;
     }
