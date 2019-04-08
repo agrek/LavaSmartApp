@@ -17,17 +17,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Lock;
 
 import ca.concordia.gilgamesh.models.Machine;
 
 public class MyService extends Service {
-    static ArrayList<Machine> machinelist = new ArrayList<>();
-
-    static String currLoc;
-    static String currMac;
     private static final String TAG = "MyService";
     private static final String REQUIRED = "Required";
+    static List<Machine> machinelist = new ArrayList<>();
+    static String currLoc;
+    static String currMac;
+
     static String defaultLocation;
+    static String customLocation;
+
+    static List<String> myLocations;
+    static Lock locationsLock;
+
+
+    static List<String> myMachines;
+    static Lock machinesLock;
+
+    static Semaphore available = new Semaphore(1, true);
 
     public String getUid() {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -43,10 +55,7 @@ public class MyService extends Service {
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseRef = database.getReference();
-        final DatabaseReference machines = database.getReference("machines");
-        final List<String> locs = new ArrayList<>();
-        final List<String> macs = new ArrayList<>();
-        locs.add(defaultLocation);
+
 
         databaseRef.child("users").
                 child(getUid()).
@@ -69,8 +78,113 @@ public class MyService extends Service {
                             }
                         });
 
+        databaseRef.child("users").
+                child(getUid()).
+                child("custom_location").
+                addListenerForSingleValueEvent(
+                        new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                String customLocation = dataSnapshot.getValue(String.class);
+
+
+                                Log.v(TAG, customLocation);
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                            }
+                        });
+
+
         while (defaultLocation == null) {
         }
+
+        while (customLocation == null) {
+        }
+
+
+        Timer timer = new Timer();
+
+        timer.schedule(new TimerTask() {
+
+
+            @Override
+            public void run() {
+
+                databaseRef.child("locations").child(defaultLocation).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+            }
+        }, 0, 2000);
+
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+
+    void unusedStuff() {
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference databaseRef = database.getReference();
+
+        final List<String> locs = new ArrayList<>();
+        final List<String> macs = new ArrayList<>();
+
+        locs.add(defaultLocation);
+
+
+        databaseRef.child("users").child(getUid()).child("saved_locations").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                List<String> myTempLocations;
+
+                myTempLocations = new ArrayList<>();
+
+                locationsLock.lock();
+                try {
+                    // access the resource protected by this lock
+
+                    for (DataSnapshot locId : dataSnapshot.getChildren()) {
+
+                        myTempLocations.add(locId.getKey());
+
+                    }
+
+                } finally {
+
+
+                    myLocations.addAll(myTempLocations);
+
+                    locationsLock.unlock();
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        while (myLocations == null) {
+        }
+
 
         for (String loc : locs) {
 
@@ -169,7 +283,7 @@ public class MyService extends Service {
                             databaseRef.child("users").child(getUid()).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    
+
                                 }
 
                                 @Override
@@ -187,7 +301,5 @@ public class MyService extends Service {
 
 
         }
-
-        return super.onStartCommand(intent, flags, startId);
     }
 }

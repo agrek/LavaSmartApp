@@ -1,29 +1,23 @@
 package ca.concordia.gilgamesh;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import com.google.firebase.database.Query;
 
 import ca.concordia.gilgamesh.models.Machine;
 
 public class MachineListActivity extends BaseActivity {
 
-    //Create Array List of Machine
-    static ArrayList<Machine> machinelist = new ArrayList<>();
-
-    static String currLoc;
-    static String currMac;
+    Query query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,105 +25,44 @@ public class MachineListActivity extends BaseActivity {
         setContentView(R.layout.activity_machine_list);
         final ListView listview = findViewById(R.id.Machine_ListView);
 
-        baseActivityInit();
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseRef = database.getReference();
-        final DatabaseReference machines = database.getReference("machines");
 
-        final List<String> locs = new ArrayList<>();
-
-        final List<String> macs = new ArrayList<>();
+        query = databaseRef.child("user-machines").child(getUid());
 
 
-        while (defaultLocation == null) {
-        }
-
-
-        locs.add(defaultLocation);
-
-
-        Timer timer = new Timer();
-
-        timer.schedule(new TimerTask() {
-
-
+        FirebaseListOptions<Machine> options = new FirebaseListOptions.Builder<Machine>()
+                .setLayout(R.layout.rowlist)
+                .setQuery(query, Machine.class)
+                .build();
+        FirebaseListAdapter<Machine> adapter = new FirebaseListAdapter<Machine>(options) {
             @Override
-            public void run() {
+            protected void populateView(@NonNull View v, @NonNull Machine model, int position) {
+                TextView machineName = v.findViewById(R.id.MachineName_TextView);
+                TextView machineLocation = v.findViewById(R.id.MachineLocation_TextView);
+                TextView machineStatus = v.findViewById(R.id.MachineStatus_TextView);
 
-                machinelist.clear();
-
-                runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
-
-                        for (String loc : locs) {
-
-                            currLoc = loc;
-
-                            databaseRef.child("locations").child(currLoc).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                    for (DataSnapshot child : dataSnapshot.getChildren()) {
-                                        currMac = child.getKey();
-                                        macs.add(currMac);
+                machineName.setText(model.name);
+                machineLocation.setText(model.location);
+                machineStatus.setText(model.status);
 
 
-                                        databaseRef.child("machines").child(currMac).addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                                                Machine currentMachine = dataSnapshot.getValue(Machine.class);
-                                                currentMachine.location = currLoc;
-                                                machinelist.add(currentMachine);
-
-
-                                                updateAdapter();
-                                            }
-
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                            }
-                                        });
-
-
-                                    }
-                                }
-
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-
-
-                        }
-                    }
-                });
+                if (model.status.equals("ON")) {
+                    machineStatus.setTextColor(Color.GREEN);
+                    machineStatus.setText("Status: " + model.status);
+                } else if (model.status.equals("OFF")) {
+                    machineStatus.setTextColor(Color.RED);
+                    machineStatus.setText("Status: " + model.status);
+                }
 
             }
-        }, 0, 2000);
+        };
 
-
-        //Add dummy machine
-        // machinelist.add(new Machine("Lorenzo Machine", "summerhill_home", "ON"));
-        // machinelist.add(new Machine("Mario Machine", "summerhill_building", "OFF"));
-
+        listview.setAdapter(adapter);
+        adapter.startListening();
 
     }
 
-    void updateAdapter() {
-
-        ListView listview = findViewById(R.id.Machine_ListView);
-        MachineListViewCustomAdapter machineListViewCustomAdapter = new MachineListViewCustomAdapter(this, machinelist);
-        listview.setAdapter(machineListViewCustomAdapter);
-
-    }
 
 }

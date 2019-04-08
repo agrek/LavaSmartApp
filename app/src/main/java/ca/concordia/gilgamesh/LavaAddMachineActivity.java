@@ -24,16 +24,13 @@ public class LavaAddMachineActivity extends BaseActivity {
 
     private static final String TAG = "LavaAddMachineActivity";
     private static final String REQUIRED = "Required";
-
-    private Button addNewMachine;
-
-    private EditText nameEditText;
-    private EditText idEditText;
-
     static private String customMacId;
     static private String customMacName;
     static private String longMacID;
-
+    static private int THREAD_SLEEP = 500;
+    private Button addNewMachine;
+    private EditText nameEditText;
+    private EditText idEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +38,7 @@ public class LavaAddMachineActivity extends BaseActivity {
         setContentView(R.layout.activity_lava_add_machine);
 
         baseActivityInit();
+
 
         // Database connection is created in background according to 'google-services.json'
         // Returns a handle to access the database.
@@ -103,8 +101,15 @@ public class LavaAddMachineActivity extends BaseActivity {
                             // TODO: add machine to list of machines
 
 
-                            if (defaultLocation == null) {
+                            while (defaultLocation == null) {
+
                                 Log.e(TAG, defaultLocation);
+
+                                try {
+                                    Thread.sleep(THREAD_SLEEP);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                             }
 
                             databaseRef.child("locations").child(defaultLocation).child("machines").child(longMacID).setValue(true);

@@ -126,6 +126,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         // Write new user
         writeNewUser(user.getUid(), username, user.getEmail());
 
+
         // Go to MainActivity
         startActivity(new Intent(SignInActivity.this, UserTypeActivity.class));
         finish();
@@ -181,9 +182,11 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                     // user does not exist
                     String defaultLocation = mDatabase.child("locations").push().getKey();
 
+                    String customLocation = "NONE";
+
                     databaseRef.child("locations").child(defaultLocation).setValue(location);
 
-                    User user = new User(pName, pEmail, defaultLocation);
+                    User user = new User(pName, pEmail, defaultLocation, customLocation);
                     databaseRef.child("users").child(pUserId).setValue(user);
                 }
 

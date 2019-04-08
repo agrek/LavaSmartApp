@@ -16,13 +16,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import ca.concordia.gilgamesh.models.Machine;
+// TODO: unimplemented class
 
 public class UpdateMyLocationsService extends Service {
 
 
-    private static final String TAG = "UpdateMyLocationsService";
+    private static final String TAG = "UpdateMyLocations";
     private static final String REQUIRED = "Required";
+
+    static String defaultLocation;
 
 
     public UpdateMyLocationsService() {
@@ -46,7 +48,7 @@ public class UpdateMyLocationsService extends Service {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                String defaultLocation = dataSnapshot.getValue(String.class);
+                                defaultLocation = dataSnapshot.getValue(String.class);
 
 
                                 Log.v(TAG, defaultLocation);
@@ -68,14 +70,6 @@ public class UpdateMyLocationsService extends Service {
             @Override
             public void run() {
 
-
-                new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-
-                    }
-                });
 
             }
         }, 0, 2000);
