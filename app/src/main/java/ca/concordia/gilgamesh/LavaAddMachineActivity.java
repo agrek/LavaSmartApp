@@ -26,7 +26,6 @@ public class LavaAddMachineActivity extends BaseActivity {
     private static final String REQUIRED = "Required";
     static private String customMacId;
     static private String customMacName;
-    static private String longMacID;
     static private int THREAD_SLEEP = 500;
     private Button addNewMachine;
     private EditText nameEditText;
@@ -36,8 +35,6 @@ public class LavaAddMachineActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lava_add_machine);
-
-        baseActivityInit();
 
 
         // Database connection is created in background according to 'google-services.json'
@@ -73,9 +70,7 @@ public class LavaAddMachineActivity extends BaseActivity {
 
                         for (DataSnapshot child : dataSnapshot.getChildren()) {
                             myMachine = child.getValue(Machine.class);
-
-                            longMacID = child.getKey();
-
+                            myMachine.key = child.getKey();
                         }
 
 
@@ -95,24 +90,12 @@ public class LavaAddMachineActivity extends BaseActivity {
                             // TODO: update name of machine in db
 
 
-                            machines.child(longMacID).child("name").setValue(customMacName);
+                            machines.child(myMachine.key).child("name").setValue(customMacName);
 
 
                             // TODO: add machine to list of machines
 
-
-                            while (defaultLocation == null) {
-
-                                Log.e(TAG, defaultLocation);
-
-                                try {
-                                    Thread.sleep(THREAD_SLEEP);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-                            databaseRef.child("locations").child(defaultLocation).child("machines").child(longMacID).setValue(true);
+                            databaseRef.child("locations").child(getDefaultLocationId()).child("machines").child(myMachine.key).setValue(true);
 
 
                             // TODO: uncomment

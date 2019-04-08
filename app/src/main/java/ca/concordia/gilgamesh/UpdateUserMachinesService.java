@@ -38,8 +38,6 @@ public class UpdateUserMachinesService extends Service {
     static List<String> customMachineIdList = new ArrayList<>();
     static Lock customMachineIdListLock = new ReentrantLock();
 
-    static String defaultLocationId;
-
     static String customLocationId;
     static Lock customLocationIdLock = new ReentrantLock();
 
@@ -89,11 +87,9 @@ public class UpdateUserMachinesService extends Service {
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                 final DatabaseReference databaseRef = database.getReference();
 
-
-                getDefaultLocationId();
                 updateCustomLocationId();
 
-                while (defaultLocationId == null || customLocationId == null) {
+                while (getUid() == null || customLocationId == null) {
 
                     try {
                         Thread.sleep(THREAD_SLEEP);
@@ -114,44 +110,6 @@ public class UpdateUserMachinesService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-    void getDefaultLocationId() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseRef = database.getReference();
-
-
-        try {
-            databaseRef.child("users").
-                    child(getUid()).
-                    child("default_location").
-                    addListenerForSingleValueEvent(
-                            new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                    defaultLocationId = dataSnapshot.getValue(String.class);
-
-                                    Log.v(TAG, defaultLocationId);
-
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    defaultLocationId = null;
-                                }
-                            });
-
-
-        } catch (NullPointerException e) {
-
-            defaultLocationId = null;
-
-            e.printStackTrace();
-
-        }
-
-
-    }
 
     void updateCustomLocationId() {
 
@@ -204,7 +162,7 @@ public class UpdateUserMachinesService extends Service {
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                 final DatabaseReference databaseRef = database.getReference();
 
-                databaseRef.child("locations").child(defaultLocationId).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
+                databaseRef.child("locations").child(getUid()).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

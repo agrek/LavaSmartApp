@@ -20,7 +20,6 @@ public class UserTypeActivity extends BaseActivity {
 
     private static final String TAG = "UserTypeActivity";
     private static final String REQUIRED = "Required";
-    static String defaultLocationId;
     private Button homeUserButton;
     private Button commercialUserButton;
 
@@ -53,7 +52,6 @@ public class UserTypeActivity extends BaseActivity {
 
         startService(new Intent(this, UpdateUserMachinesService.class));
 
-        // getDefaultLocationId();
 
 
     }
@@ -77,32 +75,4 @@ public class UserTypeActivity extends BaseActivity {
         }
     }
 
-    void getDefaultLocationId() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseRef = database.getReference();
-
-
-        databaseRef.child("users").
-                child(getUid()).
-                child("default_location").
-                addListenerForSingleValueEvent(
-                        new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                defaultLocationId = dataSnapshot.getValue(String.class);
-
-
-                                Log.v(TAG, defaultLocationId);
-
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                defaultLocationId = null;
-                            }
-                        });
-
-    }
 }

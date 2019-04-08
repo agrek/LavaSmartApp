@@ -180,7 +180,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
                 if (!dataSnapshot.exists()) {
                     // user does not exist
-                    String defaultLocation = mDatabase.child("locations").push().getKey();
+                    // String defaultLocation = mDatabase.child("locations").push().getKey();
+                    String defaultLocation = getUid();
 
                     String customLocation = "NONE";
 

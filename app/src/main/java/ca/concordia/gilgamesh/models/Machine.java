@@ -1,10 +1,14 @@
 package ca.concordia.gilgamesh.models;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 // [START blog_user_class]
 @IgnoreExtraProperties
 public class Machine {
+
+    @Exclude
+    public String key;
 
     public String location;
     public String status;

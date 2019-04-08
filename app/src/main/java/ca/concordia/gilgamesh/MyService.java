@@ -45,6 +45,7 @@ public class MyService extends Service {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -55,7 +56,6 @@ public class MyService extends Service {
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseRef = database.getReference();
-
 
         databaseRef.child("users").
                 child(getUid()).
@@ -100,9 +100,6 @@ public class MyService extends Service {
                         });
 
 
-        while (defaultLocation == null) {
-        }
-
         while (customLocation == null) {
         }
 
@@ -115,7 +112,7 @@ public class MyService extends Service {
             @Override
             public void run() {
 
-                databaseRef.child("locations").child(defaultLocation).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
+                databaseRef.child("locations").child(getUid()).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

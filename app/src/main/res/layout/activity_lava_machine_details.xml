@@ -57,6 +57,14 @@
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="36sp" />
 
+        <TextView
+            android:id="@+id/MachineLocation_TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Machine Location"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="36sp" />
+
 
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
@@ -73,9 +81,11 @@
 
             <Switch
                 android:id="@+id/NotifyMe_Switch"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:text="Switch" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:layout_marginLeft="20dp" />
 
 
         </android.support.v7.widget.LinearLayoutCompat>
@@ -83,8 +93,11 @@
 
         <Button
             android:id="@+id/DeleteMachine_Button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:paddingHorizontal="20dp"
             android:background="#5cb5ff"
             android:text="Delete machine" />
 

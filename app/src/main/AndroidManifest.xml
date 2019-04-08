@@ -78,7 +78,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".LavaAddMachineActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MachineListActivity" />
         <activity
             android:name=".CommercialUserTypeActivity"
             android:screenOrientation="portrait" />
@@ -90,13 +91,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MachineListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".UserTypeActivity" />
         <activity
             android:name=".AddMachineManagerActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LavaMachineDetailsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MachineListActivity" />
     </application>
 
 </manifest>
