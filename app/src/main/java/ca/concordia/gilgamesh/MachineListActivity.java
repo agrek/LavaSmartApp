@@ -42,6 +42,10 @@ public class MachineListActivity extends BaseActivity {
         final List<String> macs = new ArrayList<>();
 
 
+        while (defaultLocation == null) {
+        }
+
+
         locs.add(defaultLocation);
 
 
@@ -110,7 +114,7 @@ public class MachineListActivity extends BaseActivity {
                 });
 
             }
-        }, 0, 10000);
+        }, 0, 2000);
 
 
         //Add dummy machine
