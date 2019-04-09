@@ -86,7 +86,8 @@ public class UpdateUserMachinesService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public void onCreate() {
+        super.onCreate();
 
 
         Thread t = new Thread(new Runnable() {
@@ -118,9 +119,15 @@ public class UpdateUserMachinesService extends Service {
         });
 
         t.start();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        super.onStartCommand(intent, flags, startId);
 
 
-        return super.onStartCommand(intent, flags, startId);
+        return Service.START_STICKY;
     }
 
 
