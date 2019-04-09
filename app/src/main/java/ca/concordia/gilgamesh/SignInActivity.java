@@ -184,6 +184,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                     databaseRef.child("locations").child(defaultLocation).setValue(location);
 
                     User user = new User(pName, pEmail);
+                    user.custom_location = "NONE";
+
                     databaseRef.child("users").child(pUserId).setValue(user);
                 }
 

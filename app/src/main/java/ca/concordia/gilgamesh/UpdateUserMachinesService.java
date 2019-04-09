@@ -152,7 +152,15 @@ public class UpdateUserMachinesService extends Service {
 
 
                                 } finally {
-                                    Log.v(TAG, customLocationId);
+
+                                    if (customLocationId == null) {
+                                        Log.v(TAG, "customLocationId is null");
+
+                                    } else {
+                                        Log.v(TAG, customLocationId);
+
+                                    }
+
                                     customLocationIdLock.unlock();
                                 }
 
@@ -162,7 +170,13 @@ public class UpdateUserMachinesService extends Service {
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                customLocationId = null;
+                                customLocationIdLock.lock();
+                                try {
+                                    customLocationId = null;
+
+                                } finally {
+                                    customLocationIdLock.unlock();
+                                }
                             }
                         });
 
@@ -464,7 +478,8 @@ public class UpdateUserMachinesService extends Service {
                             String status = dataSnapshot.getValue().toString();
 
                             if (status.equals("OFF")) {
-                                addNotification("TEST MACHINE");
+                                // TODO: FIXME
+                                addNotification("MACHINE");
 
                                 databaseRef.child("notifications").child(getUid()).child(machineId).removeValue();
                             }
