@@ -20,32 +20,42 @@ import com.google.firebase.database.Query;
 
 import ca.concordia.gilgamesh.models.Machine;
 
-public class MachineListActivity extends BaseActivity {
+public class CustomLocationManagerActivity extends BaseActivity {
 
     Query query;
+
+    FloatingActionButton createLocationButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_machine_list);
-        final ListView listview = findViewById(R.id.Machine_ListView);
+        setContentView(R.layout.activity_owned_location_manager);
+
+        final ListView listview = findViewById(R.id.Manager_ListView);
 
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseRef = database.getReference();
 
-        query = databaseRef.child("user-default-location-view").child(getUid());
+        createLocationButton = findViewById(R.id.fabAddLocationManager_Button);
 
-        FloatingActionButton fabAddMachine = findViewById(R.id.fabAddMachine);
-
-        fabAddMachine.setOnClickListener(new View.OnClickListener() {
+        createLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), LavaAddMachineActivity.class);
-                intent.putExtra("location_type", "DEFAULT");
-                startActivity(intent);
+
+                Intent newIntent = new Intent(CustomLocationManagerActivity.this, LavaAddMachineActivity.class);
+
+                newIntent.putExtra("location_type", "CUSTOM");
+
+                startActivity(newIntent);
+
             }
         });
+
+
+        query = databaseRef.child("manager-location-view").child(getUid());
+
 
         FirebaseListOptions<Machine> options = new FirebaseListOptions.Builder<Machine>()
                 .setLayout(R.layout.rowlist)
@@ -90,6 +100,7 @@ public class MachineListActivity extends BaseActivity {
         listview.setAdapter(adapter);
         adapter.startListening();
 
+
     }
 
     @Override
@@ -110,6 +121,4 @@ public class MachineListActivity extends BaseActivity {
             return super.onOptionsItemSelected(item);
         }
     }
-
-
 }

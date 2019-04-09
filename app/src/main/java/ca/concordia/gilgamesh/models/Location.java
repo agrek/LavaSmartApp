@@ -14,6 +14,7 @@ public class Location {
     public String key;
     public String name;
     public String manager_id;
+    public String custom_id;
     public Map<String, Boolean> machines = new HashMap<>();
 
     public Location() {
@@ -21,10 +22,10 @@ public class Location {
     }
 
 
-    public Location(String name, String manager_id, Map<String, Boolean> machines) {
+    public Location(String name, String manager_id, String custom_id) {
         this.name = name;
         this.manager_id = manager_id;
-        this.machines = machines;
+        this.custom_id = custom_id;
     }
 }
 // [END blog_user_class]

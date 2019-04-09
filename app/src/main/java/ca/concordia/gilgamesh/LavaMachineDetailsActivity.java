@@ -23,6 +23,7 @@ import ca.concordia.gilgamesh.models.Machine;
 
 public class LavaMachineDetailsActivity extends BaseActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,7 @@ public class LavaMachineDetailsActivity extends BaseActivity {
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             if (isChecked) {
                                 databaseRef.child("notifications").child(getUid()).child(finalMachineId).setValue(true);
+
                             } else {
                                 databaseRef.child("notifications").child(getUid()).child(finalMachineId).removeValue();
                             }
@@ -142,4 +144,6 @@ public class LavaMachineDetailsActivity extends BaseActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

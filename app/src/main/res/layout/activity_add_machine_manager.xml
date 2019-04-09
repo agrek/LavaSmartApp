@@ -18,18 +18,15 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/AddMachineManager_Button"
+        android:id="@+id/fabAddMachineManager_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
-        android:clickable="true"
-        android:src="@android:drawable/ic_input_add"
-        android:tint="@color/common_google_signin_btn_text_dark_focused"
-        app:backgroundTint="#5cb5ff"
-        app:fabCustomSize="70dp"
-        app:fabSize="normal" />
+        android:visibility="visible"
+        app:srcCompat="@drawable/ic_add_item" />
 
 </RelativeLayout>

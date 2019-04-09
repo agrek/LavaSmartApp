@@ -7,10 +7,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"
         android:orientation="vertical">
 
         <TextView
@@ -28,10 +27,9 @@
     <LinearLayout
         android:id="@+id/Name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:layout_marginTop="150dp"
-        android:layout_marginRight="50dp"
         android:orientation="vertical">
 
 
@@ -39,17 +37,17 @@
             android:id="@+id/LocationName_InputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location Name" />
+            android:hint="Location Name"
+            android:inputType="textVisiblePassword" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/Id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:layout_marginTop="220dp"
-        android:layout_marginRight="50dp"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
@@ -60,16 +58,16 @@
                 android:id="@+id/LocationID_InputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Location Id" />
+                android:hint="Location Id"
+                android:inputType="textVisiblePassword" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:layout_marginTop="350dp"
-        android:layout_marginRight="50dp"
         android:orientation="horizontal">
 
         <Button

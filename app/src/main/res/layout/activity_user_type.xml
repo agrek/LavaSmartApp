@@ -13,6 +13,17 @@
         android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
+
+        <Button
+            android:id="@+id/all_machines_Button"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:background="#5cb5ff"
+            android:text="My Machines" />
+
+
         <Button
             android:id="@+id/HomeUser_Button"
             style="@style/Widget.AppCompat.Button.Small"
@@ -27,6 +38,7 @@
             android:layout_height="wrap_content"
             android:text="If you own a washing machine at home."
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
 
         <Button
             android:id="@+id/CommercialUser_Button"
@@ -43,6 +55,7 @@
             android:layout_height="wrap_content"
             android:text="If you are a tenant or a building manager"
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
 
     </LinearLayout>
 

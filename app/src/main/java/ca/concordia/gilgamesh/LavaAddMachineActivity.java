@@ -31,10 +31,14 @@ public class LavaAddMachineActivity extends BaseActivity {
     private EditText nameEditText;
     private EditText idEditText;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lava_add_machine);
+
+        Intent intent = getIntent();
+        final String location_type = intent.getStringExtra("location_type");
 
 
         // Database connection is created in background according to 'google-services.json'
@@ -50,6 +54,7 @@ public class LavaAddMachineActivity extends BaseActivity {
         idEditText = findViewById(R.id.MachineId_InputEditText);
         nameEditText = findViewById(R.id.Name_InputEditText);
 
+
         addNewMachine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,14 +62,14 @@ public class LavaAddMachineActivity extends BaseActivity {
                 customMacId = idEditText.getText().toString();
                 customMacName = nameEditText.getText().toString();
 
+                if (!validateForm()) {
+                    return;
+                }
 
                 machines.orderByChild("custom_id").equalTo(customMacId).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        if (!validateForm()) {
-                            return;
-                        }
 
                         Machine myMachine = null;
 
@@ -95,11 +100,33 @@ public class LavaAddMachineActivity extends BaseActivity {
 
                             // TODO: add machine to list of machines
 
-                            databaseRef.child("locations").child(getDefaultLocationId()).child("machines").child(myMachine.key).setValue(true);
+                            if (location_type.equals("DEFAULT")) {
+
+                                databaseRef.child("locations").child(getUid()).child("machines").child(myMachine.key).setValue(true);
+
+                            } else {
+                                databaseRef.child("custom-locations").child(getUid()).child("machines").child(myMachine.key).setValue(true);
+                            }
 
 
                             // TODO: uncomment
-                            startActivity(new Intent(LavaAddMachineActivity.this, MachineListActivity.class));
+
+                            Intent newIntent;
+
+                            if (location_type.equals("DEFAULT")) {
+                                // go back to main machine view
+
+                                newIntent = new Intent(LavaAddMachineActivity.this, MachineListActivity.class);
+                                newIntent.putExtra("location_type", "DEFAULT");
+
+                            } else {
+                                // go back to where AddMachine was called from
+
+                                newIntent = new Intent(LavaAddMachineActivity.this, CustomLocationManagerActivity.class);
+                                newIntent.putExtra("location_type", "CUSTOM");
+                            }
+
+                            startActivity(newIntent);
 
 
                         } else {

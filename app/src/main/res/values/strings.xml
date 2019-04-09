@@ -38,4 +38,6 @@
     <string name="hint_id">Machine ID</string>
     <string name="add">Add</string>
     <string name="remove">Remove</string>
+    <string name="channel_name">machine_notification_channel</string>
+    <string name="channel_description">machine_notification_channel_description</string>
 </resources>
