@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.concordia.gilgamesh">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -78,8 +81,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".LavaAddMachineActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MachineListActivity" />
+            android:parentActivityName=".MachineListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CommercialUserTypeActivity"
             android:screenOrientation="portrait" />
@@ -91,15 +94,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MachineListActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".UserTypeActivity" />
+            android:parentActivityName=".UserTypeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddMachineManagerActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LavaMachineDetailsActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MachineListActivity" />
+            android:parentActivityName=".MachineListActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
