@@ -77,10 +77,10 @@ public class MachineListActivity extends BaseActivity {
 
                 if (model.status.equals("ON")) {
                     machineStatus.setTextColor(Color.GREEN);
-                    machineStatus.setText("Status: " + model.status);
+                    machineStatus.setText("Status: ON");
                 } else if (model.status.equals("OFF")) {
                     machineStatus.setTextColor(Color.RED);
-                    machineStatus.setText("Status: " + model.status);
+                    machineStatus.setText("Status: OFF");
                 }
 
             }
