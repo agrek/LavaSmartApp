@@ -100,10 +100,11 @@
 
         <Button
             android:id="@+id/viewloc"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="420dp"
+            android:layout_marginRight="100dp"
             android:background="@color/colorPrimaryDark"
             android:text="View Location"
             android:textColor="@color/common_google_signin_btn_text_dark_default" />
