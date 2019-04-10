@@ -46,7 +46,6 @@ public class LavaMachineDetailsActivity extends BaseActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseRef = database.getReference();
 
-
         databaseRef.child("machines").orderByChild("custom_id").equalTo(custom_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -59,11 +58,10 @@ public class LavaMachineDetailsActivity extends BaseActivity {
 
                 final String finalMachineId = machineId;
 
-                notifyMe_Switch.setChecked(false);
-
 
                 if (machineId != null) {
 
+                    // setup delete machine button
                     deleteMachine_Button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -82,32 +80,41 @@ public class LavaMachineDetailsActivity extends BaseActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                            Boolean notifyMe = false;
+
 
                             for (DataSnapshot child : dataSnapshot.getChildren()) {
 
+
                                 if (child.getKey().equals(finalMachineId)) {
 
-                                    notifyMe_Switch.setChecked(true);
+                                    notifyMe = true;
+
+
                                 }
 
                             }
 
-                            notifyMe_Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                                @Override
-                                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                    if (isChecked) {
-                                        databaseRef.child("notifications").child(getUid()).child(finalMachineId).setValue(true);
+                            notifyMe_Switch.setChecked(notifyMe);
 
-                                    } else {
-                                        databaseRef.child("notifications").child(getUid()).child(finalMachineId).removeValue();
-                                    }
-                                }
-                            });
+
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                        }
+                    });
+
+                    notifyMe_Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            if (isChecked) {
+                                databaseRef.child("notifications").child(getUid()).child(finalMachineId).setValue(true);
+
+                            } else {
+                                databaseRef.child("notifications").child(getUid()).child(finalMachineId).removeValue();
+                            }
                         }
                     });
 
