@@ -6,7 +6,6 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
@@ -94,9 +93,6 @@ public class UpdateUserMachinesService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
-
-
 
 
         Thread t = new Thread(new Runnable() {
@@ -542,14 +538,27 @@ public class UpdateUserMachinesService extends Service {
     public void addNotification(String machine_name) {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        createNotificationChannel();
         int notifyID = 1;
-        Notification notification = new Notification.Builder(UpdateUserMachinesService.this)
-                .setContentTitle("LAVASMART")
-                .setContentText(machine_name + " is done washing!")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setChannelId(CHANNEL_ID)
-                .build();
+
+        Notification notification = new Notification();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel();
+            notification = new Notification.Builder(UpdateUserMachinesService.this)
+                    .setContentTitle("LAVASMART")
+                    .setContentText(machine_name + " is done washing!")
+                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setChannelId(CHANNEL_ID)
+                    .build();
+
+        } else {
+            createNotificationChannel();
+            notification = new Notification.Builder(UpdateUserMachinesService.this)
+                    .setContentTitle("LAVASMART")
+                    .setContentText(machine_name + " is done washing!")
+                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .build();
+        }
 
 
         notificationManager.notify(notifyID, notification);
@@ -558,14 +567,11 @@ public class UpdateUserMachinesService extends Service {
 
     //Adding notification channel that will run only in the case that the API is above the required one.
 
-    public void createNotificationChannel()
-
-    {
+    public void createNotificationChannel() {
 
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channel_description);
 
