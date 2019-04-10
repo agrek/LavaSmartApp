@@ -2,18 +2,13 @@ package ca.concordia.gilgamesh;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import ca.concordia.gilgamesh.models.Location;
 
@@ -21,6 +16,8 @@ public class LavaNewLocationActivity extends BaseActivity {
 
     Button addMachineButton;
     Button saveButton;
+
+    Button viewLocationButton;
 
     EditText locationName_InputEditText;
     EditText locationID_InputEditText;
@@ -40,6 +37,8 @@ public class LavaNewLocationActivity extends BaseActivity {
         locationName_InputEditText = findViewById(R.id.LocationName_InputEditText);
         locationID_InputEditText = findViewById(R.id.LocationID_InputEditText);
 
+
+        viewLocationButton = findViewById(R.id.viewloc);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +64,15 @@ public class LavaNewLocationActivity extends BaseActivity {
                 }
 
 
+            }
+        });
+
+        viewLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LavaNewLocationActivity.this, CustomLocationManagerActivity.class);
+
+                startActivity(intent);
             }
         });
 

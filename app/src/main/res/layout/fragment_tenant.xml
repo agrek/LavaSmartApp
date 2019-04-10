@@ -34,5 +34,15 @@
             android:layout_weight="1"
             android:background="#5cb5ff"
             android:text="Add Location" />
+
+        <Button
+            android:id="@+id/DeleteLocation_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:background="#5cb5ff"
+            android:text="Delete Location" />
     </LinearLayout>
 </RelativeLayout>

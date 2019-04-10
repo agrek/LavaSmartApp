@@ -25,6 +25,8 @@ public class TenantFragment extends DialogFragment {
 
     TextView addLocation_InputEditText;
 
+    Button deleteLocationButton;
+
 
     @Nullable
     @Override
@@ -36,6 +38,25 @@ public class TenantFragment extends DialogFragment {
 
 
         addLocation_InputEditText = view.findViewById(R.id.AddLocation_InputEditText);
+
+        deleteLocationButton = view.findViewById(R.id.DeleteLocation_Button);
+
+
+        deleteLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference databaseRef = database.getReference();
+
+                databaseRef.child("users").child(getUid()).child("custom_location").setValue("NONE");
+
+                Intent intent = new Intent(new Intent(getActivity(), MachineListActivity.class));
+                intent.putExtra("location_type", "DEFAULT");
+                startActivity(intent);
+                return;
+            }
+        });
 
 
         addLocationButton.setOnClickListener(new View.OnClickListener() {
