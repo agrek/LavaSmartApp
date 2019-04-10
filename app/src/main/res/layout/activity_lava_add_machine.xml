@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#11000000"
-                android:hint="Please enter your machine Id"
+                android:hint="Please enter Machine Name"
                 android:inputType="textVisiblePassword"
                 android:textColorLink="@color/colorPrimary" />
 
@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#11000000"
-                android:hint="Name your machine"
+                android:hint="give a nickname"
                 android:inputType="textVisiblePassword"
                 android:textColorLink="@color/colorPrimary" />
         </android.support.design.widget.TextInputLayout>
