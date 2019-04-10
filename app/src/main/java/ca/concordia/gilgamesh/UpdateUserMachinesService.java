@@ -198,103 +198,115 @@ public class UpdateUserMachinesService extends Service {
 
                 // default location machine ids copy to Java
 
-                databaseRef.child("locations").child(getUid()).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    databaseRef.child("locations").child(getUid()).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                        defaultMachineIdListLock.lock();
+                            defaultMachineIdListLock.lock();
 
-                        try {
-                            // access the resource protected by this lock
+                            try {
+                                // access the resource protected by this lock
 
-                            defaultMachineIdList.clear();
+                                defaultMachineIdList.clear();
 
-                            for (DataSnapshot machine : dataSnapshot.getChildren()) {
+                                for (DataSnapshot machine : dataSnapshot.getChildren()) {
 
-                                defaultMachineIdList.add(machine.getKey());
+                                    defaultMachineIdList.add(machine.getKey());
 
+                                }
+
+
+                            } finally {
+                                defaultMachineIdListLock.unlock();
                             }
 
 
-                        } finally {
-                            defaultMachineIdListLock.unlock();
                         }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
+                        }
+                    });
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
 
-                    }
-                });
-
-
-                databaseRef.child("custom-locations").child(customLocationId).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    databaseRef.child("custom-locations").child(customLocationId).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                        customMachineIdListLock.lock();
+                            customMachineIdListLock.lock();
 
-                        try {
-                            // access the resource protected by this lock
+                            try {
+                                // access the resource protected by this lock
 
-                            customMachineIdList.clear();
+                                customMachineIdList.clear();
 
-                            for (DataSnapshot machine : dataSnapshot.getChildren()) {
+                                for (DataSnapshot machine : dataSnapshot.getChildren()) {
 
-                                customMachineIdList.add(machine.getKey());
+                                    customMachineIdList.add(machine.getKey());
 
+                                }
+
+
+                            } finally {
+                                customMachineIdListLock.unlock();
                             }
 
 
-                        } finally {
-                            customMachineIdListLock.unlock();
                         }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
+                        }
+                    });
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
 
-                    }
-                });
-
-
-                databaseRef.child("custom-locations").child(getUid()).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    databaseRef.child("custom-locations").child(getUid()).child("machines").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                        ownedMachineIdListLock.lock();
+                            ownedMachineIdListLock.lock();
 
-                        try {
-                            // access the resource protected by this lock
+                            try {
+                                // access the resource protected by this lock
 
-                            ownedMachineIdList.clear();
+                                ownedMachineIdList.clear();
 
-                            for (DataSnapshot machine : dataSnapshot.getChildren()) {
+                                for (DataSnapshot machine : dataSnapshot.getChildren()) {
 
-                                ownedMachineIdList.add(machine.getKey());
+                                    ownedMachineIdList.add(machine.getKey());
 
+                                }
+
+
+                            } finally {
+                                ownedMachineIdListLock.unlock();
                             }
 
 
-                        } finally {
-                            ownedMachineIdListLock.unlock();
                         }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                        }
+                    });
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
 
 
             }
@@ -436,7 +448,12 @@ public class UpdateUserMachinesService extends Service {
 
                     for (final String machine : removableMachines) {
 
-                        databaseRef.child("manager-location-view").child(getUid()).child(machine).removeValue();
+                        try {
+                            databaseRef.child("manager-location-view").child(getUid()).child(machine).removeValue();
+
+                        } catch (NullPointerException e) {
+                            e.printStackTrace();
+                        }
 
 
                     }
@@ -462,47 +479,52 @@ public class UpdateUserMachinesService extends Service {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseRef = database.getReference();
 
-        databaseRef.child("notifications").child(getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        try {
+            databaseRef.child("notifications").child(getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
 
-                    final String machineId = child.getKey();
+                        final String machineId = child.getKey();
 
 
-                    databaseRef.child("machines").child(machineId).child("status").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        databaseRef.child("machines").child(machineId).child("status").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                            String status = dataSnapshot.getValue().toString();
+                                String status = dataSnapshot.getValue().toString();
 
-                            if (status.equals("OFF")) {
-                                // TODO: FIXME
-                                addNotification("MACHINE");
+                                if (status.equals("OFF")) {
+                                    // TODO: FIXME
+                                    addNotification("MACHINE");
 
-                                databaseRef.child("notifications").child(getUid()).child(machineId).removeValue();
+                                    databaseRef.child("notifications").child(getUid()).child(machineId).removeValue();
+                                }
+
                             }
 
-                        }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            }
+                        });
 
-                        }
-                    });
+
+                    }
 
 
                 }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
+                }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -517,6 +539,7 @@ public class UpdateUserMachinesService extends Service {
                 .setContentText(machine_name + " is done washing!")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .build();
+
 
         notificationManager.notify(notifyID, notification);
 
