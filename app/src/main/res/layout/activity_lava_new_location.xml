@@ -92,4 +92,21 @@
             android:textColor="@color/common_google_signin_btn_text_dark_default" />
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/viewloc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="420dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="View Location"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
+    </LinearLayout>
+
 </RelativeLayout>
