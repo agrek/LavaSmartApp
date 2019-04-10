@@ -20,10 +20,18 @@
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:background="@color/colorPrimaryDark"
             android:text="My Machines"
             android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="If you want to see existing machines."
+            android:textAlignment="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
 
         <Button
@@ -33,14 +41,17 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
             android:text="Home User"
+
             android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:text="If you own a washing machine at home."
             android:textAlignment="center"
+
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
 
@@ -49,7 +60,6 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
             android:background="@color/colorPrimaryDark"
             android:text="COMMERCIAL USER"
             android:textColor="@color/common_google_signin_btn_text_dark_default" />

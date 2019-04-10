@@ -32,7 +32,6 @@
                 android:id="@+id/Status_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#11000000"
                 android:text="Status:"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="30sp" />
@@ -55,7 +54,6 @@
             android:id="@+id/MachineName_TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#11000000"
             android:text="Machine Name"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="30sp" />
@@ -64,7 +62,6 @@
             android:id="@+id/MachineLocation_TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#11000000"
             android:text="Machine Location"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="30sp" />
@@ -79,7 +76,6 @@
                 android:id="@+id/MachineNotifyMe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#11000000"
                 android:text="Notify Me"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="30sp" />
