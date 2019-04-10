@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".LavaAddMachineActivity">
 
 
@@ -19,7 +20,7 @@
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@mipmap/ic_logoicon" />
 
 
         <android.support.design.widget.TextInputLayout
@@ -30,8 +31,10 @@
                 android:id="@+id/MachineId_InputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Please enter your machine Id"
-                android:inputType="textVisiblePassword" />
+                android:background="#11000000"
+                android:hint="Please enter Machine Name"
+                android:inputType="textVisiblePassword"
+                android:textColorLink="@color/colorPrimary" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -44,8 +47,10 @@
                 android:id="@+id/Name_InputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name your machine"
-                android:inputType="textVisiblePassword" />
+                android:background="#11000000"
+                android:hint="give a nickname"
+                android:inputType="textVisiblePassword"
+                android:textColorLink="@color/colorPrimary" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -55,8 +60,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:background="#5cb5ff"
-            android:text="ADD MACHINE" />
+            android:background="@color/colorPrimaryDark"
+            android:text="ADD MACHINE"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
 
     </android.support.v7.widget.LinearLayoutCompat>

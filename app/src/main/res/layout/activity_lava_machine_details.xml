@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".LavaMachineDetailsActivity">
 
     <LinearLayout
@@ -17,7 +18,7 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             app:srcCompat="@drawable/logo" />
 
 
@@ -33,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="Status:"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="36sp" />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Status__TextView"
@@ -55,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="Machine Name"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="36sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/MachineLocation_TextView"
@@ -63,7 +64,7 @@
             android:layout_height="wrap_content"
             android:text="Machine Location"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="36sp" />
+            android:textSize="30sp" />
 
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -77,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:text="Notify Me"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="36sp" />
+                android:textSize="30sp" />
 
             <Switch
                 android:id="@+id/NotifyMe_Switch"
@@ -97,9 +98,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
+            android:background="@color/colorPrimaryDark"
             android:paddingHorizontal="20dp"
-            android:background="#5cb5ff"
-            android:text="Delete machine" />
+            android:text="Delete machine"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
 
     </LinearLayout>

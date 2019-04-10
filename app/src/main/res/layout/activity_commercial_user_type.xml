@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".UserTypeActivity">
 
     <LinearLayout
@@ -19,8 +20,9 @@
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#5cb5ff"
-            android:text="TENANT" />
+            android:background="@color/colorPrimaryDark"
+            android:text="TENANT"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         <TextView
             android:id="@+id/textView"
@@ -46,9 +48,10 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#5cb5ff"
+            android:background="@color/colorPrimaryDark"
             android:shape="oval"
-            android:text="MANAGER" />
+            android:text="MANAGER"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         <TextView
             android:id="@+id/textView3"

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".LavaNewLocationActivity">
 
     <LinearLayout
@@ -16,8 +17,9 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/architects_daughter"
+            android:drawableLeft="@drawable/ic_action_location"
             android:text="LOCATION"
+            android:fontFamily="@font/audiowide"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="#5cb5ff"
@@ -76,16 +78,18 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="#5cb5ff"
-            android:text="Save" />
+            android:background="@color/colorPrimaryDark"
+            android:text="Save"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         <Button
             android:id="@+id/AddMachine_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#5cb5ff"
-            android:text="ADD Machine" />
+            android:background="@color/colorPrimaryDark"
+            android:text="ADD Machine"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
     </LinearLayout>
 
 </RelativeLayout>
