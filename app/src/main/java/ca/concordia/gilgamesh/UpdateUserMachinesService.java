@@ -1,10 +1,13 @@
 package ca.concordia.gilgamesh;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -30,6 +33,9 @@ public class UpdateUserMachinesService extends Service {
 
     private static final String TAG = "UpdateUserMachines";
     private static final String REQUIRED = "Required";
+
+    String CHANNEL_ID = "my_channel_id";
+
 
     private static final int REFRESH_PERIOD = 1000;
     private static final int THREAD_SLEEP = 500;
@@ -88,6 +94,9 @@ public class UpdateUserMachinesService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
+
+
 
 
         Thread t = new Thread(new Runnable() {
@@ -533,15 +542,41 @@ public class UpdateUserMachinesService extends Service {
     public void addNotification(String machine_name) {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        createNotificationChannel();
         int notifyID = 1;
         Notification notification = new Notification.Builder(UpdateUserMachinesService.this)
                 .setContentTitle("LAVASMART")
                 .setContentText(machine_name + " is done washing!")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setChannelId(CHANNEL_ID)
                 .build();
 
 
         notificationManager.notify(notifyID, notification);
+
+    }
+
+    //Adding notification channel that will run only in the case that the API is above the required one.
+
+    public void createNotificationChannel()
+
+    {
+
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
 
 
     }

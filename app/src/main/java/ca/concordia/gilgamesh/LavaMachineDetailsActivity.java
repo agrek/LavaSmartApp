@@ -1,6 +1,7 @@
 package ca.concordia.gilgamesh;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Menu;
@@ -134,7 +135,19 @@ public class LavaMachineDetailsActivity extends BaseActivity {
 
                     Machine machine = child.getValue(Machine.class);
 
-                    status.setText(machine.status);
+                    String status_temp = machine.status;
+
+                    if(status_temp.equals("ON")) {
+                        status.setTextColor(Color.GREEN);
+                        status.setText(machine.status);
+                    }
+                    else if (status_temp.equals("OFF")){
+                        status.setTextColor(Color.RED);
+                        status.setText(machine.status);
+                    }
+
+
+
 
                     name.setText(machine.name);
 
