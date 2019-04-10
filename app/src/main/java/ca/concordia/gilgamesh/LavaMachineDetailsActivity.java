@@ -57,9 +57,13 @@ public class LavaMachineDetailsActivity extends BaseActivity {
                     machineId = child.getKey();
                 }
 
+                final String finalMachineId = machineId;
+
+                notifyMe_Switch.setChecked(false);
+
+
                 if (machineId != null) {
 
-                    final String finalMachineId = machineId;
                     deleteMachine_Button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -73,15 +77,37 @@ public class LavaMachineDetailsActivity extends BaseActivity {
                         }
                     });
 
-                    notifyMe_Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            if (isChecked) {
-                                databaseRef.child("notifications").child(getUid()).child(finalMachineId).setValue(true);
 
-                            } else {
-                                databaseRef.child("notifications").child(getUid()).child(finalMachineId).removeValue();
+                    databaseRef.child("notifications").child(getUid()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+
+                                if (child.getKey().equals(finalMachineId)) {
+
+                                    notifyMe_Switch.setChecked(true);
+                                }
+
                             }
+
+                            notifyMe_Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                @Override
+                                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                    if (isChecked) {
+                                        databaseRef.child("notifications").child(getUid()).child(finalMachineId).setValue(true);
+
+                                    } else {
+                                        databaseRef.child("notifications").child(getUid()).child(finalMachineId).removeValue();
+                                    }
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
                         }
                     });
 

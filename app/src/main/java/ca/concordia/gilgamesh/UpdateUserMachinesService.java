@@ -497,7 +497,7 @@ public class UpdateUserMachinesService extends Service {
 
                                 if (status.equals("OFF")) {
                                     // TODO: FIXME
-                                    addNotification("MACHINE");
+                                    addNotification("Machine");
 
                                     databaseRef.child("notifications").child(getUid()).child(machineId).removeValue();
                                 }
