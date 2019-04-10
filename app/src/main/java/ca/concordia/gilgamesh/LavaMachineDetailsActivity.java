@@ -43,6 +43,7 @@ public class LavaMachineDetailsActivity extends BaseActivity {
         Intent intent = getIntent();
 
         String custom_id = intent.getStringExtra("custom_id");
+        final String location_type = intent.getStringExtra("location_type");
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseRef = database.getReference();
@@ -67,9 +68,20 @@ public class LavaMachineDetailsActivity extends BaseActivity {
                         @Override
                         public void onClick(View v) {
 
-                            databaseRef.child("locations").child(getUid()).child("machines").child(finalMachineId).removeValue();
+                            Intent intent;
 
-                            Intent intent = new Intent(v.getContext(), MachineListActivity.class);
+
+                            if (location_type.equals("DEFAULT")) {
+                                databaseRef.child("locations").child(getUid()).child("machines").child(finalMachineId).removeValue();
+                                intent = new Intent(v.getContext(), MachineListActivity.class);
+                                intent.putExtra("location_type", "DEFAULT");
+
+                            } else {
+                                databaseRef.child("custom-locations").child(getUid()).child("machines").child(finalMachineId).removeValue();
+                                intent = new Intent(v.getContext(), CustomLocationManagerActivity.class);
+                                intent.putExtra("location_type", "CUSTOM");
+
+                            }
 
                             startActivity(intent);
 
@@ -144,16 +156,13 @@ public class LavaMachineDetailsActivity extends BaseActivity {
 
                     String status_temp = machine.status;
 
-                    if(status_temp.equals("ON")) {
+                    if (status_temp.equals("ON")) {
                         status.setTextColor(Color.GREEN);
                         status.setText(machine.status);
-                    }
-                    else if (status_temp.equals("OFF")){
+                    } else if (status_temp.equals("OFF")) {
                         status.setTextColor(Color.RED);
                         status.setText(machine.status);
                     }
-
-
 
 
                     name.setText(machine.name);

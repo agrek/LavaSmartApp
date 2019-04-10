@@ -71,6 +71,7 @@ public class MachineListActivity extends BaseActivity {
                         Intent intent = new Intent(v.getContext(), LavaMachineDetailsActivity.class);
                         intent.putExtra("machine_id", machine_id);
                         intent.putExtra("custom_id", model.custom_id);
+                        intent.putExtra("location_type", "DEFAULT");
                         startActivity(intent);
                     }
                 });
