@@ -40,4 +40,5 @@
     <string name="remove">Remove</string>
     <string name="channel_name">machine_notification_channel</string>
     <string name="channel_description">machine_notification_channel_description</string>
+    <string name="login_logo">login_logo</string>
 </resources>
