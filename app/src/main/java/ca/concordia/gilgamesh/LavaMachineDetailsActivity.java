@@ -48,20 +48,21 @@ public class LavaMachineDetailsActivity extends BaseActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseRef = database.getReference();
 
-        databaseRef.child("machines").orderByChild("custom_id").equalTo(custom_id).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseRef.child("machines").orderByChild("custom_id").equalTo(custom_id).limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String machineId = new String();
+                if (dataSnapshot.exists() && dataSnapshot.hasChildren()) {
 
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    machineId = child.getKey();
-                }
+                    // machine exists
 
-                final String finalMachineId = machineId;
+                    String machineId = new String();
 
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        machineId = child.getKey();
+                    }
 
-                if (machineId != null) {
+                    final String finalMachineId = machineId;
 
                     // setup delete machine button
                     deleteMachine_Button.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +131,7 @@ public class LavaMachineDetailsActivity extends BaseActivity {
                             }
                         }
                     });
+
 
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Error: machine null", Toast.LENGTH_SHORT);

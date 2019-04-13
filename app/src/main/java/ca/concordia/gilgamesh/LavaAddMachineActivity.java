@@ -66,65 +66,51 @@ public class LavaAddMachineActivity extends BaseActivity {
                     return;
                 }
 
-                machines.orderByChild("custom_id").equalTo(customMacId).addListenerForSingleValueEvent(new ValueEventListener() {
+
+                machines.orderByChild("custom_id").equalTo(customMacId).limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
+
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-                        Machine myMachine = null;
-
-                        for (DataSnapshot child : dataSnapshot.getChildren()) {
-                            myMachine = child.getValue(Machine.class);
-                            myMachine.key = child.getKey();
-                        }
-
-
-                        if (myMachine != null) {
+                        if (dataSnapshot.exists() && dataSnapshot.hasChildren()) {
 
                             // machine exists
 
-                            Log.e(TAG, myMachine.toString());
+                            Machine myMachine = new Machine();
 
-                            Log.e(TAG, "Machine " + customMacId + " added");
+                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                myMachine = child.getValue(Machine.class);
+                                myMachine.key = child.getKey();
+                            }
 
+                            Log.d(TAG, String.format("Machine [%s] (%s) added", myMachine.name, myMachine.custom_id));
 
                             Toast.makeText(LavaAddMachineActivity.this,
-                                    "Machine " + customMacId + " already exists",
+                                    String.format("Machine %s already exists", myMachine.custom_id),
                                     Toast.LENGTH_SHORT).show();
 
                             // TODO: update name of machine in db
-
-
                             machines.child(myMachine.key).child("name").setValue(customMacName);
 
-
                             // TODO: add machine to list of machines
-
-                            if (location_type.equals("DEFAULT")) {
-
-                                databaseRef.child("locations").child(getUid()).child("machines").child(myMachine.key).setValue(true);
-
-                            } else {
-                                databaseRef.child("custom-locations").child(getUid()).child("machines").child(myMachine.key).setValue(true);
-                            }
-
-
-                            // TODO: uncomment
 
                             Intent newIntent;
 
                             if (location_type.equals("DEFAULT")) {
+
+                                databaseRef.child("locations").child(getUid()).child("machines").child(myMachine.key).setValue(true);
                                 // go back to main machine view
 
                                 newIntent = new Intent(LavaAddMachineActivity.this, MachineListActivity.class);
                                 newIntent.putExtra("location_type", "DEFAULT");
 
                             } else {
-                                // go back to where AddMachine was called from
-
+                                databaseRef.child("custom-locations").child(getUid()).child("machines").child(myMachine.key).setValue(true);
                                 newIntent = new Intent(LavaAddMachineActivity.this, CustomLocationManagerActivity.class);
                                 newIntent.putExtra("location_type", "CUSTOM");
                             }
+
 
                             startActivity(newIntent);
 
