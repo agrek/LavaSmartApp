@@ -9,7 +9,6 @@
     tools:context=".LavaLoginPageActivity">
 
     <ImageView
-        android:id="@+id/logo_login"
         android:layout_width="415dp"
         android:layout_height="276dp"
         android:layout_alignParentStart="true"

@@ -16,7 +16,6 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView4"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             app:srcCompat="@drawable/logo" />
@@ -29,7 +28,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/Status_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Status:"
@@ -73,7 +71,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/MachineNotifyMe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Notify Me"
